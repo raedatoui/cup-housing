@@ -35,6 +35,7 @@
   </compiler>
   <applications>
     <application path="nyc_cup_housing.as"/>
+    <application path="index.as"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
