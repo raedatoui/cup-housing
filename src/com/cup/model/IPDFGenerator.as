@@ -1,10 +1,9 @@
-package com.cup.model
-{
+package com.cup.model {
 	import flash.display.BitmapData;
 	
-	public interface IPDFGenerator
-	{
+	public interface IPDFGenerator {
 		function testBitmap(bitty:BitmapData):void;
+		
 		function outputPDF(incomes:Array, bitty:BitmapData):void;
 	}
 }

@@ -1,31 +1,29 @@
-package com.modestmaps.extras
-{
-	import com.modestmaps.Map;
-	import com.modestmaps.core.MapExtent;
-	import com.modestmaps.events.MapEvent;
-	import com.modestmaps.geo.Location;
-	
-	import flash.display.Sprite;
-	import flash.external.ExternalInterface;
-	import flash.text.TextField;
-	import flash.text.TextFormat;
-	import flash.utils.clearTimeout;
-	import flash.utils.setTimeout;
+package com.modestmaps.extras {
+import com.modestmaps.Map;
+import com.modestmaps.core.MapExtent;
+import com.modestmaps.events.MapEvent;
+import com.modestmaps.geo.Location;
 
-	/** 
-	 * VERY EXPERIMENTAL, requires javascript, uses this technique: 
-	 * http://www.actionscript.org/resources/articles/745/1/JavaScript-and-VBScript-Injection-in-ActionScript-3/Page1.html
-	 * 
-	 * TODO: update spans for Microsoft, fix slowness with Google, add Yahoo :)
-	 * 
-	 * In general, lots of this needs reworking... at least, IMapProviders should be able to provide copyright strings 
-	 * without requiring javascript, and without needing to edit this file.
-	 */
-	[Event(name="copyrightChanged", type="com.modestmaps.events.MapEvent")] 
-	public class MapCopyright extends Sprite
-	{
-		private static const script_js:XML = <script>
-			<![CDATA[
+import flash.display.Sprite;
+import flash.external.ExternalInterface;
+import flash.text.TextField;
+import flash.text.TextFormat;
+import flash.utils.clearTimeout;
+import flash.utils.setTimeout;
+
+/**
+ * VERY EXPERIMENTAL, requires javascript, uses this technique:
+ * http://www.actionscript.org/resources/articles/745/1/JavaScript-and-VBScript-Injection-in-ActionScript-3/Page1.html
+ *
+ * TODO: update spans for Microsoft, fix slowness with Google, add Yahoo :)
+ *
+ * In general, lots of this needs reworking... at least, IMapProviders should be able to provide copyright strings
+ * without requiring javascript, and without needing to edit this file.
+ */
+[Event(name="copyrightChanged", type="com.modestmaps.events.MapEvent")]
+public class MapCopyright extends Sprite {
+    private static const script_js:XML = <script>
+        <![CDATA[
 				function() {
 					modestMaps = {
 					    
@@ -206,117 +204,113 @@ package com.modestmaps.extras
 					GAddCopyright = function(g,a,r,b,a,g,e, holder) { modestMaps.google.addCopyright(holder); };
 				}
 			]]>
-		</script>;
-		
-		private static var scriptAdded:Boolean = false;
-		
-		protected var map:Map;
-		
-		/** htmlText to be added to a label - listen for MapEvent.COPYRIGHT_CHANGED */
-		public var copyright:String = "";
+    </script>;
 
-		public var copyrightField:TextField;
-		
-		protected var offsetX:Number=10;
-		protected var offsetY:Number=10;
+    private static var scriptAdded:Boolean = false;
 
-		public function MapCopyright(map:Map, offsetX:Number=10, offsetY:Number=10)
-		{
-			this.map = map;
-			
-			this.offsetX = offsetX;
-			this.offsetY = offsetY;
+    protected var map:Map;
 
-			if (!scriptAdded) {
-				try {
-					ExternalInterface.call(script_js);
-			        ExternalInterface.call('modestMaps.setSwfId', ExternalInterface.objectID);
-			        ExternalInterface.addCallback("copyrightCallback", setCopyright);
-			 	}
-			 	catch (error:Error) {
-			 		trace("problem adding setCopyright as callback in Map.as");
-			 		trace(error.getStackTrace());
-			 	}
-			}
-			
-	        map.addEventListener(MapEvent.STOP_ZOOMING, onMapChange);
-	        map.addEventListener(MapEvent.ZOOMED_BY, onMapChange);
-	        map.addEventListener(MapEvent.STOP_PANNING, onMapChange);
-	        map.addEventListener(MapEvent.PANNED, onMapChange);
-	        map.addEventListener(MapEvent.EXTENT_CHANGED, onMapChange);
-	        map.addEventListener(MapEvent.MAP_PROVIDER_CHANGED, onMapChange);
-	        map.addEventListener(MapEvent.RESIZED, onMapResized);
+    /** htmlText to be added to a label - listen for MapEvent.COPYRIGHT_CHANGED */
+    public var copyright:String = "";
 
-			copyrightField = new TextField();
-			copyrightField.defaultTextFormat = new TextFormat('Arial', 10, 0x000000, false, null, null, null, '_blank');
-			copyrightField.selectable = false;
-			copyrightField.mouseEnabled = true;
-			addChild(copyrightField);			
-		}
-		
-	    protected var copyrightTimeout:uint;
-	    
-		protected function onMapChange(event:MapEvent):void
-	    {
-	    	if (copyrightTimeout) {
-	    		clearTimeout(copyrightTimeout);
-	    	}
-	    	copyrightTimeout = setTimeout(callCopyright, 250);
-	    }
-	    
-	    protected function onMapResized(event:MapEvent):void
-	    {
-			copyrightField.x = map.getWidth() - copyrightField.width - offsetX;
-			copyrightField.y = map.getHeight() - copyrightField.height - offsetY;	    		
-	    }
-	    
-	   /**
- 	    * Call javascript:modestMaps.copyright() with details about current view.
- 	    * See js/copyright.js.
- 	    */
- 	    protected function callCopyright():void
- 	    {
-	    	if (copyrightTimeout) {
-	    		clearTimeout(copyrightTimeout);
-	    	}
-	    	
-	    	var extent:MapExtent = map.getExtent();
-	    	
-	        var cenL:Location = extent.center;
- 	        var minL:Location = extent.southEast;
- 	        var maxL:Location = extent.northWest;
- 	   
- 	        var minLat:Number = Math.min(minL.lat, maxL.lat);
- 	        var minLon:Number = Math.min(minL.lon, maxL.lon);
- 	        var maxLat:Number = Math.max(minL.lat, maxL.lat);
- 	        var maxLon:Number = Math.max(minL.lon, maxL.lon);
- 	       
- 	       	try {
- 	    	    ExternalInterface.call("modestMaps.copyright", map.getMapProvider().toString(), cenL.lat, cenL.lon, minLat, minLon, maxLat, maxLon, map.getZoom());
- 	    	}
- 	    	catch (error:Error) {
- 	    		//trace("problem setting copyright in Map.as");
- 	    		//trace(error.getStackTrace());	
- 	    	}
- 	    }
-	    
-	   /**  this function gets exposed to javascript as a callback
-        * 
-        *   to display the copyright string in your flash piece, you then need to listen for 
-        *   the COPYRIGHT_CHANGED MapEvent, or add MapCopyright as a child of map for a basic implementation.
-	    */
-	    public function setCopyright(copyright:String):void {
-	    	this.copyright = copyright;
-	    	this.copyright = this.copyright.replace(/&copy;/g,"©");
+    public var copyrightField:TextField;
 
-			copyrightField.htmlText = this.copyright;
-			copyrightField.width = copyrightField.textWidth + 4;
-			copyrightField.height = copyrightField.textHeight + 4;
+    protected var offsetX:Number = 10;
+    protected var offsetY:Number = 10;
 
-			onMapResized(null);
-				    		
-	    	dispatchEvent(new MapEvent(MapEvent.COPYRIGHT_CHANGED, this.copyright));
-	    }
-	    
-	}
+    public function MapCopyright(map:Map, offsetX:Number = 10, offsetY:Number = 10) {
+        this.map = map;
+
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+
+        if (!scriptAdded) {
+            try {
+                ExternalInterface.call(script_js);
+                ExternalInterface.call('modestMaps.setSwfId', ExternalInterface.objectID);
+                ExternalInterface.addCallback("copyrightCallback", setCopyright);
+            }
+            catch (error:Error) {
+                trace("problem adding setCopyright as callback in Map.as");
+                trace(error.getStackTrace());
+            }
+        }
+
+        map.addEventListener(MapEvent.STOP_ZOOMING, onMapChange);
+        map.addEventListener(MapEvent.ZOOMED_BY, onMapChange);
+        map.addEventListener(MapEvent.STOP_PANNING, onMapChange);
+        map.addEventListener(MapEvent.PANNED, onMapChange);
+        map.addEventListener(MapEvent.EXTENT_CHANGED, onMapChange);
+        map.addEventListener(MapEvent.MAP_PROVIDER_CHANGED, onMapChange);
+        map.addEventListener(MapEvent.RESIZED, onMapResized);
+
+        copyrightField = new TextField();
+        copyrightField.defaultTextFormat = new TextFormat('Arial', 10, 0x000000, false, null, null, null, '_blank');
+        copyrightField.selectable = false;
+        copyrightField.mouseEnabled = true;
+        addChild(copyrightField);
+    }
+
+    protected var copyrightTimeout:uint;
+
+    protected function onMapChange(event:MapEvent):void {
+        if (copyrightTimeout) {
+            clearTimeout(copyrightTimeout);
+        }
+        copyrightTimeout = setTimeout(callCopyright, 250);
+    }
+
+    protected function onMapResized(event:MapEvent):void {
+        copyrightField.x = map.getWidth() - copyrightField.width - offsetX;
+        copyrightField.y = map.getHeight() - copyrightField.height - offsetY;
+    }
+
+    /**
+     * Call javascript:modestMaps.copyright() with details about current view.
+     * See js/copyright.js.
+     */
+    protected function callCopyright():void {
+        if (copyrightTimeout) {
+            clearTimeout(copyrightTimeout);
+        }
+
+        var extent:MapExtent = map.getExtent();
+
+        var cenL:Location = extent.center;
+        var minL:Location = extent.southEast;
+        var maxL:Location = extent.northWest;
+
+        var minLat:Number = Math.min(minL.lat, maxL.lat);
+        var minLon:Number = Math.min(minL.lon, maxL.lon);
+        var maxLat:Number = Math.max(minL.lat, maxL.lat);
+        var maxLon:Number = Math.max(minL.lon, maxL.lon);
+
+        try {
+            ExternalInterface.call("modestMaps.copyright", map.getMapProvider().toString(), cenL.lat, cenL.lon, minLat, minLon, maxLat, maxLon, map.getZoom());
+        }
+        catch (error:Error) {
+            //trace("problem setting copyright in Map.as");
+            //trace(error.getStackTrace());
+        }
+    }
+
+    /**  this function gets exposed to javascript as a callback
+     *
+     *   to display the copyright string in your flash piece, you then need to listen for
+     *   the COPYRIGHT_CHANGED MapEvent, or add MapCopyright as a child of map for a basic implementation.
+     */
+    public function setCopyright(copyright:String):void {
+        this.copyright = copyright;
+        this.copyright = this.copyright.replace(/&copy;/g, "©");
+
+        copyrightField.htmlText = this.copyright;
+        copyrightField.width = copyrightField.textWidth + 4;
+        copyrightField.height = copyrightField.textHeight + 4;
+
+        onMapResized(null);
+
+        dispatchEvent(new MapEvent(MapEvent.COPYRIGHT_CHANGED, this.copyright));
+    }
+
+}
 }

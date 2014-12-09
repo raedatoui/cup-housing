@@ -1,38 +1,25 @@
-package com.cup.output
-{
-	import com.cup.output.PDFComp;
+package com.cup.output {
+	
+	import com.cup.output.PDFCompositor;
 	import com.cup.model.SubBoroIncomes;
 	import com.fonts.ConduitBold;
 	import com.fonts.ConduitMedium;
+	
 	import flash.display.BitmapData;
 	import flash.text.Font;
 	
-	public class MainPrinter
-	{
+	public class MainPrinter {
 		public var incomeData:Array = [];
 		public var regularFont:Font = new ConduitMedium();
 		public var boldFont:Font = new ConduitBold();
-		public var testData:BitmapData = new BitmapData(50,50,false,0xff0000);
-//		public var strip:CHART_PNG = new CHART_PNG(50, 50);
-
-		public function MainPrinter()
-		{
+		public var testData:BitmapData = new BitmapData(50, 50, false, 0xff0000);
 		
-//			Font.registerFont(ConduitMedium);
-//			Font.registerFont(ConduitBold);
-//			
-//			
-//			
-//			Security.allowDomain("stamen.com");
-//			Security.allowDomain("envisioningdevelopment.net");
-						
-
+		
+		public function MainPrinter() {
 			this.spoofIncomes();
-			//outputPDF([incomeData[50],incomeData[23]],1997,testData,testData);
 		}
 		
-		public function spoofIncomes():void
-		{
+		public function spoofIncomes():void {
 			incomeData[0] = SubBoroIncomes.fromTxt("101		Mott Haven/Hunts Point	13,806	5,590	4,510	1,906	1,850	93	27,756		$23,426");
 			incomeData[1] = SubBoroIncomes.fromTxt("102		Morrisania/Belmont	17,910	7,610	5,761	2,570	1,610	59	35,521		$22,542");
 			incomeData[2] = SubBoroIncomes.fromTxt("103		Highbridge/South Concourse	13,490	6,589	5,903	2,546	1,216	35	29,778		$27,557");
@@ -97,29 +84,25 @@ package com.cup.output
 			
 		}
 		
-		public function printSinglePDF(id:String, r:int, strip1:BitmapData, strip2:BitmapData):void
-		{
-			//outputPDF([incomeData[8]], ["101","102","110","106"], r, strip1, strip2);
-			
+		public function printSinglePDF(id:String, r:int, strip1:BitmapData, strip2:BitmapData):void {
 			var selectBoroughs:Array = new Array;
 			var squareValue:int = 1000;
 			
-			switch(id)
-			{
+			switch (id) {
 				case "100":
-					selectBoroughs = ["101","102","103","104","105","106","107","108","109","110"];
+					selectBoroughs = ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"];
 					break;
 				case "200":
-					selectBoroughs = ["201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218"];
+					selectBoroughs = ["201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218"];
 					break;
 				case "300":
-					selectBoroughs = ["301","302","303","304","305","306","307","308","309","310"];
+					selectBoroughs = ["301", "302", "303", "304", "305", "306", "307", "308", "309", "310"];
 					break;
 				case "400":
-					selectBoroughs = ["401","402","403","404","405","406","407","408","409","410","411","412","413","414"];
+					selectBoroughs = ["401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414"];
 					break;
 				case "500":
-					selectBoroughs = ["501","502","503"];
+					selectBoroughs = ["501", "502", "503"];
 					break;
 				
 				default:
@@ -129,29 +112,18 @@ package com.cup.output
 				
 			}
 			
-			
-			
-			
-			
-			for each (var income:SubBoroIncomes in incomeData)
-			{
-				if (id == income.id)
-				{
+			for each (var income:SubBoroIncomes in incomeData) {
+				if (id == income.id) {
 					trace('found id:', id, income);
 					//outputPDF([incomeData[50],incomeData[23]],1997,strip1,strip2);
-					outputPDF([income], selectBoroughs, r, strip1, strip2,squareValue);
+					outputPDF([income], selectBoroughs, r, strip1, strip2, squareValue);
 					return;
 				}
 			}
-			
-			
 		}
 		
-		public function outputPDF(incomes:Array, sel:Array, r:int, strip1:BitmapData, strip2:BitmapData,squareVal:int):void
-		{
-			// var testPDF:PDFComp = new PDFComp("NYC_mercator_all.svg",((charty as MovieClip).getChildAt(0) as Bitmap).bitmapData as BitmapData,incomes,regularFont,boldFont);
-			var testPDF:PDFComp = new PDFComp("http://envisioningdevelopment.net/flash/resources/NYC_mercator_all.svg", strip1,strip2,incomes,sel,r,squareVal,regularFont,boldFont);
-			//var testPDF:PDFComp = new PDFComp("http://envisioningdevelopment.net/flash/resources/create.php", strip1,strip2,incomes,sel,r,squareVal,regularFont,boldFont);
+		public function outputPDF(incomes:Array, sel:Array, r:int, strip1:BitmapData, strip2:BitmapData, squareVal:int):void {
+			var testPDF:PDFCompositor = new PDFCompositor("http://envisioningdevelopment.net/flash/resources/NYC_mercator_all.svg", strip1, strip2, incomes, sel, r, squareVal, regularFont, boldFont);
 			
 		}
 	}

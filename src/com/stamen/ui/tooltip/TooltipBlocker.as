@@ -1,7 +1,5 @@
-package com.stamen.ui.tooltip
-{
-	public interface TooltipBlocker
-	{
-		
-	}
+package com.stamen.ui.tooltip {
+public interface TooltipBlocker {
+
+}
 }

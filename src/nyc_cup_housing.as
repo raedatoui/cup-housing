@@ -17,15 +17,11 @@ package {
 	import com.shashi.info.TextShield;
 	import com.shashi.mapproviders.BaseURLMapProvider;
 	import com.shashi.model.MapSyncer;
-	import com.shashi.overlays.shp.ShpMarker;
-	import com.shashi.overlays.shp.ShpMarkerClip;
 	import com.shashi.ui.DropdownButton;
 	import com.shashi.ui.TextDropdown;
 	import com.stamen.display.ApplicationBase;
 	import com.stamen.graphics.color.RGB;
 	import com.stamen.graphics.color.RGBA;
-	import com.stamen.text.Helvetica;
-	import com.stamen.text.HelveticaBold;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -35,7 +31,6 @@ package {
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.external.ExternalInterface;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
@@ -126,9 +121,7 @@ package {
 		}
 		
 		override public function applyParameter(name:String, value:String):Boolean
-		{
-			trace(defaultBaseURL);
-			
+		{			
 			switch (name)
 			{
 				case 'subboro':
@@ -165,13 +158,7 @@ package {
 		override protected function createChildren():void
 		{
 			super.createChildren();
-			
-			//			map = new TweenMap(stage.stageWidth, stage.stageHeight, true, new CloudMadeProvider(CloudMadeProvider.PALE_DAWN, 8, 14));
-			//			map.addEventListener(MouseEvent.DOUBLE_CLICK, map.onDoubleClick);
-			//			map.setCenterZoom(boroCenterManhattan, 12);
-			//			TweenFilterLite.to(map.grid, 0, {type:"color", saturation:0});
-			//			addChild(map);
-			
+
 			map = new TweenMap(stage.stageWidth, stage.stageHeight, true, new BaseURLMapProvider(BaseURLMapProvider.TONER, 8, 14));
 			map.alpha = .75;
 			map.addEventListener(MouseEvent.DOUBLE_CLICK, map.onDoubleClick);
@@ -211,19 +198,11 @@ package {
 			addChild(selector);
 			
 			Security.allowDomain('*');
-			Security.allowDomain('http://localhost/index.html?debug=true');
 			Security.allowDomain('http://envisioningdevelopment.net');
-			Security.loadPolicyFile('http://envisioningdevelopment.net/map/crossdomain.xml');
-			// Security.loadPolicyFile('http://diametunim.com/crossdomain.xml');
+
 			loader = new Loader();
 			loader.load(new URLRequest(defaultBaseURL + 'nyc.swf'), new LoaderContext(true));
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoad);
-			
-			//			pdfGenerator = new Loader();
-			//			pdfGenerator.contentLoaderInfo.addEventListener(ErrorEvent.ERROR, onChartStripError);
-			//			pdfGenerator.contentLoaderInfo.addEventListener(Event.COMPLETE, onChartStripComplete);
-			//			trace(defaultBaseURL + 'PDFGenerator.swf');
-			//			pdfGenerator.load(new URLRequest(defaultBaseURL + 'PDFGenerator.swf'),	new LoaderContext(false, pdfGenerator.contentLoaderInfo.applicationDomain));
 			
 			addIntroShield();
 			
@@ -259,7 +238,6 @@ package {
 		{
 			shield = new TextShield('adsadsa', defaultIntroText.toUpperCase(), shieldWidth, stage.stageHeight, RGBA.black(.8), RGBA.black(.2));
 			addChild(shield);
-			trace(this.defaultBaseURL);
 		}
 		
 		protected function onLoad(event:Event):void

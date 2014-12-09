@@ -3,28 +3,36 @@
  * $Id$
  */
 
-package com.stamen.graphics.color
-{
-	import com.stamen.graphics.color.*;
+package com.stamen.graphics.color {
+import com.stamen.graphics.color.*;
 
-	public interface IColor
-	{
-	    function clone():IColor;
-        function equals(color:IColor):Boolean;
+public interface IColor {
+    function clone():IColor;
 
-	    function toHex(withAlpha:Boolean=false):uint;
-	    function toArray():Array;
-	    function toRGB():RGB;
-	    function toRGBA(alpha:Number=1):RGBA;
-	    function toHSV():HSV;
-	    function toHSVA(alpha:Number=1):HSVA;
-	    function toString():String;
+    function equals(color:IColor):Boolean;
 
-	    function blend(color:IColor, amount:Number=0.5, asRGB:Boolean=false):IColor;
-	    
-        function get hex():uint;
-        function get hex32():uint;
-	    function get alpha():Number;
-	    function set alpha(alpha:Number):void;
-	}
+    function toHex(withAlpha:Boolean = false):uint;
+
+    function toArray():Array;
+
+    function toRGB():RGB;
+
+    function toRGBA(alpha:Number = 1):RGBA;
+
+    function toHSV():HSV;
+
+    function toHSVA(alpha:Number = 1):HSVA;
+
+    function toString():String;
+
+    function blend(color:IColor, amount:Number = 0.5, asRGB:Boolean = false):IColor;
+
+    function get hex():uint;
+
+    function get hex32():uint;
+
+    function get alpha():Number;
+
+    function set alpha(alpha:Number):void;
+}
 }

@@ -1,5 +1,4 @@
-package com.cup.display
-{
+package com.cup.display {
 	import com.shashi.ui.BitmapButton;
 	
 	import flash.display.Bitmap;
@@ -11,9 +10,8 @@ package com.cup.display
 	import flash.net.navigateToURL;
 	
 	import gs.TweenLite;
-
-	public class WebLayout extends Sprite
-	{
+	
+	public class WebLayout extends Sprite {
 		public static const INFO_CLICK:String = 'info';
 		public static const INTRO_CLICK:String = 'intro';
 		public static const HOME_CLICK:String = 'home';
@@ -57,8 +55,7 @@ package com.cup.display
 		
 		protected var buttons:Sprite;
 		
-		public function WebLayout()
-		{
+		public function WebLayout() {
 			super();
 			
 			buttons = new Sprite();
@@ -107,48 +104,39 @@ package com.cup.display
 			this.buttonMode = this.useHandCursor = true;
 		}
 		
-		public function loadButtons(event:Event=null):void
-		{
+		public function loadButtons(event:Event = null):void {
 			// TweenLite.to(buttons, 1, {alpha:1});
 		}
 		
-		protected function onHomeClick(event:MouseEvent):void
-		{
+		protected function onHomeClick(event:MouseEvent):void {
 			navigateToURL(new URLRequest('http://envisioningdevelopment.net/'), '_self');
 		}
 		
-		protected function onIntro(event:MouseEvent):void
-		{
+		protected function onIntro(event:MouseEvent):void {
 			dispatchEvent(new Event(INTRO_CLICK));
 		}
 		
-		protected function onInfo(event:MouseEvent):void
-		{
+		protected function onInfo(event:MouseEvent):void {
 			dispatchEvent(new Event(INFO_CLICK));
 		}
 		
-		protected function onGroupClick(event:MouseEvent):void
-		{
+		protected function onGroupClick(event:MouseEvent):void {
 			dispatchEvent(new Event(GROUPING_CLICK));
 		}
 		
-		protected function onZoomInClick(event:Event):void
-		{
+		protected function onZoomInClick(event:Event):void {
 			dispatchEvent(new Event(ZOOM_IN_CLICK));
 		}
 		
-		protected function onZoomOutClick(event:Event):void
-		{
+		protected function onZoomOutClick(event:Event):void {
 			dispatchEvent(new Event(ZOOM_OUT_CLICK));
 		}
 		
-		protected function onOver(event:MouseEvent):void
-		{
-			if (!(event.target is Bitmap))	return; 
+		protected function onOver(event:MouseEvent):void {
+			if (!(event.target is Bitmap))    return;
 			var t:Bitmap = event.target as Bitmap;
 			
-			if (t is INFO)
-			{
+			if (t is INFO) {
 				
 			}
 		}

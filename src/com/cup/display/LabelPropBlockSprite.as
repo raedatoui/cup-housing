@@ -1,5 +1,4 @@
-package com.cup.display
-{
+package com.cup.display {
 	import com.shashi.display.TipSprite;
 	import com.shashi.model.TextMaker;
 	import com.stamen.graphics.color.IColor;
@@ -9,18 +8,14 @@ package com.cup.display
 	import flash.display.Graphics;
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
-
-	public class LabelPropBlockSprite extends ProportionalBlockSprite implements TooltipProvider
-	{
+	
+	public class LabelPropBlockSprite extends ProportionalBlockSprite implements TooltipProvider {
 		protected var texts:Array = [];
 		
-		public function LabelPropBlockSprite(labels:Array, tips:Array, blockColors:Array, blockPercents:Array, maxPercent:Number=1, w:Number=0, h:Number=0, color:IColor=null)
-		{
-			for (var i:int=0; i<labels.length; i++)
-			{
+		public function LabelPropBlockSprite(labels:Array, tips:Array, blockColors:Array, blockPercents:Array, maxPercent:Number = 1, w:Number = 0, h:Number = 0, color:IColor = null) {
+			for (var i:int = 0; i < labels.length; i++) {
 				var str:String = labels[i];
-				if (str.length)
-				{
+				if (str.length) {
 					var text:TextField = TextMaker.createTextField(12, false);
 					text.htmlText = str;
 					text.antiAliasType = AntiAliasType.ADVANCED;
@@ -33,36 +28,30 @@ package com.cup.display
 			
 			super(blockColors, blockPercents, maxPercent, w, h, color);
 			
-			for (var i:int = 0; i < colors.length; i++)
-			{
+			for (i = 0; i < colors.length; i++) {
 				var block:TipSprite = blocks[i];
 				block.setTooltipText(tips[i]);
-			}			
+			}
 		}
 		
-		override protected function drawThis(g:Graphics, index:int, cx:Number, cw:Number, col:uint, cy:Number=0, ch:Number=0):void
-		{
+		override protected function drawThis(g:Graphics, index:int, cx:Number, cw:Number, col:uint, cy:Number = 0, ch:Number = 0):void {
 			super.drawThis(g, index, cx, cw, col, cy, ch);
 			
-			if (texts[index])
-			{
+			if (texts[index]) {
 				var field:TextField = texts[index] as TextField;
 				field.width = cw;
 				field.x = cx + 4;
 			}
 		}
 		
-		public function getTooltipText():String
-		{
-			for each (var b:BlockSprite in blocks)
-			{
-				if (b.hitTestPoint(this.mouseX, this.mouseY))
-				{
+		public function getTooltipText():String {
+			for each (var b:BlockSprite in blocks) {
+				if (b.hitTestPoint(this.mouseX, this.mouseY)) {
 					trace('hit', blocks.indexOf(b));
 				}
 			}
 			
-			return 'hekllo'; 
+			return 'hekllo';
 		}
 	}
 }

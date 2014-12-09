@@ -1,17 +1,14 @@
-package com.cup.ui
-{
+package com.cup.ui {
 	import flash.display.CapsStyle;
 	import flash.display.JointStyle;
 	import flash.display.LineScaleMode;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-
-	public class CloseButton extends Sprite
-	{
+	
+	public class CloseButton extends Sprite {
 		protected var size:int = 16;
 		
-		public function CloseButton()
-		{
+		public function CloseButton() {
 			super();
 			
 			onOut();
@@ -22,8 +19,7 @@ package com.cup.ui
 			useHandCursor = buttonMode = true;
 		}
 		
-		protected function onOver(event:MouseEvent):void
-		{
+		protected function onOver(event:MouseEvent):void {
 			graphics.clear();
 			graphics.lineStyle(3, 0xFFFFFF, 1, false, LineScaleMode.NONE, CapsStyle.SQUARE, JointStyle.BEVEL);
 			graphics.beginFill(0);
@@ -34,11 +30,10 @@ package com.cup.ui
 			graphics.moveTo(size, 0);
 			graphics.lineTo(0, size);
 			graphics.endFill();
-			graphics.lineStyle();			
+			graphics.lineStyle();
 		}
 		
-		protected function onOut(event:MouseEvent=null):void
-		{
+		protected function onOut(event:MouseEvent = null):void {
 			graphics.clear();
 			graphics.lineStyle(3, 0xFFFFFF, 1, false, LineScaleMode.NONE, CapsStyle.SQUARE, JointStyle.BEVEL);
 			graphics.beginFill(0);
