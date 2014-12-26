@@ -41,10 +41,7 @@ package {
 	
 	import gs.TweenFilterLite;
 	import gs.TweenLite;
-	
-	
-	// import org.alivepdf.layout.Layout;
-	
+
 	[SWF(backgroundColor="#FFFFFF")]
 	public class nyc_cup_housing extends ApplicationBase
 	{
@@ -56,9 +53,9 @@ package {
 		
 		protected var chartStrip:BitmapData;
 		
-		// defaults
+		// defaults - data
 		protected var defaultInitialSubBoro:String = '';
-		protected var defaultBaseURL:String = 'http://envisioningdevelopment.net/flash/20141104/';
+		protected var defaultBaseURL:String = '';
 		protected var defaultMapURL:String = 'nyc_mercator_subboro.swf';
 		protected var defaultDataURL:String = 'income_data.txt';
 		
@@ -67,10 +64,12 @@ package {
 			'Additional Design: Glen Cummings of MTWTF\n' +
 			'Mapping Asssistance: Inbar Kishoni\n'+
 			'Data Hosting: cloudshare';
+
 		protected var defaultIntroText:String = '';
 		protected var defaultRentIntroText:String = '';
 		protected var defaultWhatNowText:String = '';
-		
+
+		//data
 		protected static const boroCenterManhattan:Location = new Location(40.749884, -73.926977);
 		protected var boroIDs:Object = {'MANHATTAN' : 300, 'BROOKLYN' : 200, 'BRONX' : 100, 'STATEN ISLAND' : 500, 'QUEENS' : 400};
 		protected var boroNames:Array = ['', 'BRONX', 'BROOKLYN', 'MANHATTAN', 'QUEENS', 'STATEN ISLAND'];
@@ -101,7 +100,7 @@ package {
 		protected var tooltip:CUPTooltip;
 		protected var display:BoroDisplay;
 		
-		// bottom
+		// bottom - data
 		protected var chart:IncomeChart;
 		
 		// pdf maker
@@ -129,6 +128,7 @@ package {
 					return true;
 				case 'baseURL':
 					defaultBaseURL = value;
+					trace("base url", value)
 					return true;
 				case 'mapURL':
 					defaultMapURL = value;
@@ -167,7 +167,7 @@ package {
 			addChild(map);
 			
 			hover = new CUPHoverLabel(0, 0, 0, 0xFFFFFF, 0x000000, true, 12);
-			hover.visible = false;
+			hover.visible = true;
 			hover.mouseEnabled = hover.mouseChildren = false;
 			addChild(hover);
 			

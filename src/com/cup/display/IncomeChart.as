@@ -44,7 +44,7 @@ package com.cup.display {
 			'<b>Middle Income</b> \n92K-192K',
 			'<b>High Income</b> \n192K or more'];
 		
-		protected var mfiTips:Array = ['<b>“Extremely Low Income”</b> runs from 0% to 30% of MFI,\nor from $0 to $23,050 in income for a family of four.', // <b>Extremely Low Income</b> \n23K or less',
+		protected var mfiTips:Array = ['<b>“Extremely Lowssss Income”</b> runs from 0% to 30% of MFI,\nor from $0 to $23,050 in income for a family of four.', // <b>Extremely Low Income</b> \n23K or less',
 			'<b>“Very Low Income”</b> runs from 30% to 50% of MFI,\nor from $23,050 to $38,400 in income for a family of four.', // <b>Very Low Income</b> \n23K-38K',
 			'<b>“Low Income”</b> runs from 50% to 80% of MFI,\nor from $38,400 to $61,450 in income for a family of four.', // <b>Low Income</b> \n38K-61K',
 			'<b>“Moderate Income”</b> runs from 80% to 120% of MFI,\nor from $61,450 to $92,150 in income for a family of four.', // <b>Moderate Income</b> \n61K-92K',

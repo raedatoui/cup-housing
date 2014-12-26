@@ -10,7 +10,7 @@
 		
 
 		<script type="text/javascript" src="swfobject.js"></script><style type="text/css"></style>
-		<script type="text/javascript"><!--
+		<script type="text/javascript">
 		function updatePermalink(params)
 		{
             location.href = '#' + (params ? params : '-');
@@ -34,105 +34,73 @@
             }
             return query;
 		}
-		--></script>
+		</script>
 	</head>
 
 	<body>
-		<div id="swf"><embed type="application/x-shockwave-flash" src="nyc_cup_housing.swf" width="100%" height="100%" style="" id="flash" name="flash" bgcolor="#000000" quality="high" allowscriptaccess="always" allowfullscreen="false" menu="true" flashvars="baseURL=http://envisioningdevelopment.net/flash/resources/&amp;mapURL=nyc_mercator_subboro.swf&amp;dataURL=income_data.txt&amp;subboro=&amp;introText=Who lives here? Who can afford to live here?
-
-You can use this site to look at income demographics and rents in neighborhoods all over New York City.
-
-When you click on a neighborhood, you'll map the number of families in each income category on the multicolored bar at the bottom of the page.
-
-Come inside to see how it works and why it matters!&amp;questionMarkText=Web %26 Information Design:
-&lt;a href='http://www.diametunim.com'&gt;Sha Hwang&lt;/a&gt;, Zach Watson, and &lt;a href='http://wewiwa.com'&gt;William Wang&lt;/a&gt;
-
-Concept %26 Project Direction:
-Rosten Woo and John Mangin of the &lt;a href='http://anothercupdevelopment.org'&gt;Center for Urban Pedagogy&lt;/a&gt;
-
-Additional Design:
-Glen Cummings of &lt;a href='http://www.mtwtf.org'&gt;MTWTF&lt;/a&gt;
-
-Mapping Asssistance:
-Inbar Kishoni
-
-Data Hosting:
-cloudshare&amp;rentIntroText=Who Can Afford to Live Here?
-
-What's 'affordable'?
- The government says that housing is 'affordable' if you spend 30%25 or less of your income to live there.
-
-The bottom number on this color bar translates your annual income into 'affordable' monthly rent. Thirty percent of $20,000 per year, for instance, is $500 per month. 
-
-Use the rent sliders to estimate how much it costs to rent a one-, two-, and three-bedroom apartment in that neighborhood.&amp;whatNowText=To learn more about how affordable housing works in your neighborhood,
-order or download the book 'What Is Affordable Housing?' or order the 'What Is Affordable Housing?' workshop kit.
-
-Find out more &lt;a href='http://envisioningdevelopment.net'&gt;here&lt;/a&gt;.&amp;mfiText=The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the 'median family income.' The MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $76,800 per year."></div>
-		
+		<div id="swf">
 		<script type="text/javascript">
 		// <![CDATA[
-		    var so = new SWFObject('nyc_cup_housing.swf', 'flash', '100%', '100%', '9.0.0', '#000000');
-		    so.useExpressInstall('expressinstall.swf');
-		    so.addParam('allowScriptAccess', 'always');
-		    so.addParam('allowFullscreen', 'false');
-		    so.addParam('menu', 'true');
+			var so = new SWFObject('nyc_cup_housing.swf', 'flash', '100%', '100%', '9.0.0', '#000000');
+			so.useExpressInstall('expressinstall.swf');
+			so.addParam('allowScriptAccess', 'always');
+			so.addParam('allowFullscreen', 'false');
+			so.addParam('menu', 'true');
 		    
 		    var flashvars = {
-		    				// 'baseURL': 	'http://envisioningdevelopment.net/flash/resources/',
-		    				'mapURL' : 	'nyc_mercator_subboro.swf',
-		    				'dataURL':	'income_data.txt',
-		    				'subboro': 	getQueryParamValue('id'),
-		    				
-		    				// text for the shields, use \n for new lines, and \' for quote marks
-		    				// also because it's being urlencoded, use resources like http://www.blooberry.com/indexdot/html/topics/urlencoding.htm for specific %20 type codes
-							'introText'			:	'Who lives here? Who can afford to live here?\n\nYou can use this site to look at income demographics and rents in neighborhoods all over New York City.\n\n' + 
-													'When you click on a neighborhood, you\'ll map the number of families in each income category on the multicolored bar at the bottom of the page.\n\n' + 
-													'Come inside to see how it works and why it matters!', 
-															
-		    				'questionMarkText'	:	'Web %26 Information Design:\n<a href=\'http://www.postarchitectural.com\'>Sha Hwang</a>, <a href=\'http://www.virtualclockwork.com\'>Zach Watson</a>, and <a href=\'http://http://thatdesignfirm.com\'>William Wang</a>\n\nConcept %26 Project Direction:\nRosten Woo and John Mangin of the <a href=\'http://anothercupdevelopment.org\'>Center for Urban Pedagogy</a>\n\n' +
-													'Additional Design:\nGlen Cummings of <a href=\'http://www.mtwtf.org\'>MTWTF</a>\n\nMapping Asssistance:\nInbar Kishoni\n\nData Hosting:\ncloudshare',
-													
-		    				'rentIntroText'		:	'Who Can Afford to Live Here?\n\nWhat\'s \'affordable\'?\n The government says that housing is \'affordable\'' + 
-		    										' if you spend 30%25 or less of your income to live there.' + 
-													'\n\nThe bottom number on this color bar translates your annual income into \'affordable\' monthly rent.' + 
-													' Thirty percent of $20,000 per year, for instance, is $500 per month. ' + 
-													'\n\nUse the rent sliders to estimate how much it costs to rent a one-, two-, ' + 
-													'and three-bedroom apartment in that neighborhood.',
-													
-		    				'whatNowText'		:	'To learn more about how affordable housing works in your neighborhood,\norder or download the book \'What Is Affordable Housing?\'' + 
-		    										' or order the \'What Is Affordable Housing?\' workshop kit.\n\nFind out more <a href=\'http://envisioningdevelopment.net\'>here</a>.',
-		    				
-							// income values, will be parsed as ints in flash
-							'mfi'				:	83000,
-							'mfiIncomes'		:	'0,24900,41500,66400,99600,207500',
-							'mfiDescription'	:	'The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. ' +
-													'These categories are expressed as percentages of the median family income.' +
-													'\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $83,000 per year.',
-	
-							// text for the MFI chart sections at the bottom
-							'mfiLabel0'			:	'<b>Extremely Low Income</b>\n24K or less',
-							'mfiLabel1'			:	'<b>Very Low Income</b>\n24K-41K',
-							'mfiLabel2'			:	'<b>Low Income</b>\n41K-66K',
-							'mfiLabel3'			:	'<b>Moderate Income</b>\n66K-99K',
-							'mfiLabel4'			:	'<b>Middle Income</b>\n99K-207K',
-							'mfiLabel5'			:	'<b>High Income</b>\n207K or more',
-							
-							// tooltips for the MFI chart at the bottom
-							'mfiTip0'			:	'<b>Extremely Super Low Income</b> runs from 0%25 to 30%25 of MFI,\nor from $0 to $24,900 in income for a family of four.',
-							'mfiTip1'			:	'<b>Very Low Income</b> runs from 30%25 to 50%25 of MFI,\nor from $24,900 to $41,500 in income for a family of four.',
-							'mfiTip2'			: 	'<b>Low Income</b> runs from 50%25 to 80%25 of MFI,\nor from $41,500 to $66,400 in income for a family of four.',
-							'mfiTip3'			:	'<b>Moderate Income</b> runs from 80%25 to 120%25 of MFI,\nor from $66,400 to $99,600 in income for a family of four.',
-							'mfiTip4'			:	'<b>Middle Income</b> runs from 120%25 to 250%25 of MFI,\nor from $99,600 to $207,500 in income for a family of four.',
-							'mfiTip5'			:	'<b>High Income</b> is above 250%25 of MFI,\nor above $207,500 in income for a family of four.'
-		    				};
-		    
-		    for (var prop in flashvars) {
-		        so.addVariable(prop, flashvars[prop]);
-		    }
-		    
-		    so.write('swf');
+				'baseURL': 	'http://envisioningdevelopment.net/flash/20141104/',
+				'mapURL' : 	'nyc_mercator_subboro.swf',
+				'dataURL':	'income_data.txt',
+				'subboro': 	getQueryParamValue('id'),
+
+				// text for the shields, use \n for new lines, and \' for quote marks
+				// also because it's being urlencoded, use resources like http://www.blooberry.com/indexdot/html/topics/urlencoding.htm for specific %20 type codes
+				'introText'			:	'Who lives heress? Who can afford to live here?\n\nYou can use this site to look at income demographics and rents in neighborhoods all over New York City.\n\n' +
+										'When you click on a neighborhood, you\'ll map the number of families in each income category on the multicolored bar at the bottom of the page.\n\n' +
+										'Come inside to see how it works and why it matters!',
+
+				'questionMarkText'	:	'Web %26 Information Design:\n<a href=\'http://www.postarchitectural.com\'>Sha Hwang</a>, <a href=\'http://www.virtualclockwork.com\'>Zach Watson</a>, and <a href=\'http://http://thatdesignfirm.com\'>William Wang</a>\n\nConcept %26 Project Direction:\nRosten Woo and John Mangin of the <a href=\'http://anothercupdevelopment.org\'>Center for Urban Pedagogy</a>\n\n' +
+										'Additional Design:\nGlen Cummings of <a href=\'http://www.mtwtf.org\'>MTWTF</a>\n\nMapping Asssistance:\nInbar Kishoni\n\nData Hosting:\ncloudshare',
+
+				'rentIntroText'		:	'Who Can Afford to Live Here?\n\nWhat\'s \'affordable\'?\n The government says that housing is \'affordable\'' +
+										' if you spend 30%25 or less of your income to live there.' +
+										'\n\nThe bottom number on this color bar translates your annual income into \'affordable\' monthly rent.' +
+										' Thirty percent of $20,000 per year, for instance, is $500 per month. ' +
+										'\n\nUse the rent sliders to estimate how much it costs to rent a one-, two-, ' +
+										'and three-bedroom apartment in that neighborhood.',
+
+				'whatNowText'		:	'To learn more about how affordable housing works in your neighborhood,\norder or download the book \'What Is Affordable Housing?\'' +
+										' or order the \'What Is Affordable Housing?\' workshop kit.\n\nFind out more <a href=\'http://envisioningdevelopment.net\'>here</a>.',
+
+				// income values, will be parsed as ints in flash
+				'mfi'				:	83000,
+				'mfiIncomes'		:	'0,24900,41500,66400,99600,207500',
+				'mfiDescription'	:	'The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. ' +
+										'These categories are expressed as percentages of the median family income.' +
+										'\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $83,000 per year.',
+
+				// text for the MFI chart sections at the bottom
+				'mfiLabel0'			:	'<b>Extremely Low Income</b>\n24K or less',
+				'mfiLabel1'			:	'<b>Very Low Income</b>\n24K-41K',
+				'mfiLabel2'			:	'<b>Low Income</b>\n41K-66K',
+				'mfiLabel3'			:	'<b>Moderate Income</b>\n66K-99K',
+				'mfiLabel4'			:	'<b>Middle Income</b>\n99K-207K',
+				'mfiLabel5'			:	'<b>High Income</b>\n207K or more',
+
+				// tooltips for the MFI chart at the bottom
+				'mfiTip0'			:	'<b>Extremely Super Low Income</b> runs from 0%25 to 30%25 of MFI,\nor from $0 to $24,900 in income for a family of four.',
+				'mfiTip1'			:	'<b>Very Low Income</b> runs from 30%25 to 50%25 of MFI,\nor from $24,900 to $41,500 in income for a family of four.',
+				'mfiTip2'			: 	'<b>Low Income</b> runs from 50%25 to 80%25 of MFI,\nor from $41,500 to $66,400 in income for a family of four.',
+				'mfiTip3'			:	'<b>Moderate Income</b> runs from 80%25 to 120%25 of MFI,\nor from $66,400 to $99,600 in income for a family of four.',
+				'mfiTip4'			:	'<b>Middle Income</b> runs from 120%25 to 250%25 of MFI,\nor from $99,600 to $207,500 in income for a family of four.',
+				'mfiTip5'			:	'<b>High Income</b> is above 250%25 of MFI,\nor above $207,500 in income for a family of four.'
+			};
+
+			for (var prop in flashvars)
+				so.addVariable(prop, flashvars[prop]);
+			console.log(flashvars);
+			so.write('swf');
 		// ]]>
 		</script>
-	
-	
+	</div>
 </body></html>
