@@ -24,14 +24,18 @@ package com.cup.display {
 		protected var dotsByValue:Dictionary = new Dictionary(true);
 		
 		protected var colBG:uint = 0x666666;
+		
 		protected var min:int = 0;
-		protected var max:int = int(192000 * 1.1);
+		protected var max:int = int(192000 * 1.1); 
 		protected var grain:int = 100;
+		
 		protected var incomes:Array = [];
 		
 		protected var labelsByPercent:Dictionary = new Dictionary(true);
+		
 		protected var mfi:int = 76800;
 		protected var mfiPercents:Array = [0, .3, .5, .8, 1, 1.2, 2.5];
+		
 		protected var mfiIncomes:Array = [0, 23050, 38400, 61450, 91150, 192000];
 		
 		protected var mfiPopColors:Array = [ColorsCUP.YELLOW, ColorsCUP.RED, ColorsCUP.BROWN, ColorsCUP.BLUE, ColorsCUP.GREEN, ColorsCUP.PINK];
@@ -51,15 +55,16 @@ package com.cup.display {
 			'<b>“Middle Income”</b> runs from 120% to 250% of MFI,\nor from $92,150 to $192,000 in income for a family of four.', // <b>Middle Income</b> \n92K-192K',
 			'<b>“High Income”</b> is above 250% of MFI,\nor above $192,000 in income for a family of four.'// <b>High Income</b> \n192K or more'];
 		];
-		//		protected var mfiTips:Array = [	'<b>Extremely Low Income</b>\ndefined as 30% MFI or less,\nor less than $23,050',
-		//										'<b>Very Low Income</b>\ndefined as 30 - 50% MFI,\nor from $23,050 - 38,400',
-		//										'<b>Low Income</b>\ndefined as 50 - 80% MFI,\nor from $38,400 - 61,450',
-		//										'<b>Moderate Income</b>\ndefined as 80 - 120% MFI,\nor from $61,450 - 91,150',
-		//										'<b>Middle Income</b>\ndefined as 120 - 250% MFI,\nor from $91,150 - 192,000',
-		//										'<b>High Income</b>\ndefined as 250% MFI or more,\nor more than $192,000'];
+
+		protected var middle:MedianIncomeMarker;
+		protected var defaultIncomes:Array = [0, 23050, 38400, 61450, 76800, 91150, 192000];
+		
+		
+
 		protected var popPercents:Array = [0, .3, .5, .8, 1.2, 2.5];
 		protected var populations:Array = [];
 		
+	
 		protected var popDisplay:Sprite;
 		protected var popConnector:Sprite;
 		
@@ -271,10 +276,7 @@ package com.cup.display {
 				lastX = curX;
 			}
 		}
-		
-		protected var middle:MedianIncomeMarker;
-		protected var defaultIncomes:Array = [0, 23050, 38400, 61450, 76800, 91150, 192000];
-		
+				
 		protected function recalculateIncomesOnMFI():void {
 			var curX:Number = 0;
 			var stretchUp:int = popDisplay.y;
