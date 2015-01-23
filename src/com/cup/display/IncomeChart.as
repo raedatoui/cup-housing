@@ -25,40 +25,45 @@ package com.cup.display {
 		
 		protected var colBG:uint = 0x666666;
 		
-		protected var min:int = 0;
-		protected var max:int = int(192000 * 1.1); 
-		protected var grain:int = 100;
-		
+
 		protected var incomes:Array = [];
 		
 		protected var labelsByPercent:Dictionary = new Dictionary(true);
 		
-		protected var mfi:int = 76800;
-		protected var mfiPercents:Array = [0, .3, .5, .8, 1, 1.2, 2.5];
-		
-		protected var mfiIncomes:Array = [0, 23050, 38400, 61450, 91150, 192000];
-		
-		protected var mfiPopColors:Array = [ColorsCUP.YELLOW, ColorsCUP.RED, ColorsCUP.BROWN, ColorsCUP.BLUE, ColorsCUP.GREEN, ColorsCUP.PINK];
-		protected var mfiColors:Array = [0x000000, ColorsCUP.YELLOW, ColorsCUP.RED, ColorsCUP.BROWN, ColorsCUP.BLUE, ColorsCUP.BLUE, ColorsCUP.GREEN, ColorsCUP.PINK];
-		
-		protected var mfiLabels:Array = ['', '<b>Extremely Low Income</b> \n23K or less',
+		public var mfi:int = 76800;
+		public var maxmfi:int = 192000;
+		public var minmfi:int = 192000;
+		public var mfiPercents:Array = [0, .3, .5, .8, 1, 1.2, 2.5];
+		public var mfiIncomes:Array = [0, 23050, 38400, 61450, 91150, 192000];
+		public var mfiDescription:String = 'The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. ' +
+			'These categories are expressed as percentages of the “median family income.” The MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $76,800 per year';
+		public var mfiLabels:Array = ['', '<b>Extremely Low Income</b> \n23K or less',
 			'<b>Very Low Income</b> \n23K-38K',
 			'<b>Low Income</b> \n38K-61K',
 			'<b>Moderate Income</b> \n61K-92K',
 			'<b>Middle Income</b> \n92K-192K',
 			'<b>High Income</b> \n192K or more'];
-		
-		protected var mfiTips:Array = ['<b>“Extremely Lowssss Income”</b> runs from 0% to 30% of MFI,\nor from $0 to $23,050 in income for a family of four.', // <b>Extremely Low Income</b> \n23K or less',
-			'<b>“Very Low Income”</b> runs from 30% to 50% of MFI,\nor from $23,050 to $38,400 in income for a family of four.', // <b>Very Low Income</b> \n23K-38K',
-			'<b>“Low Income”</b> runs from 50% to 80% of MFI,\nor from $38,400 to $61,450 in income for a family of four.', // <b>Low Income</b> \n38K-61K',
-			'<b>“Moderate Income”</b> runs from 80% to 120% of MFI,\nor from $61,450 to $92,150 in income for a family of four.', // <b>Moderate Income</b> \n61K-92K',
-			'<b>“Middle Income”</b> runs from 120% to 250% of MFI,\nor from $92,150 to $192,000 in income for a family of four.', // <b>Middle Income</b> \n92K-192K',
-			'<b>“High Income”</b> is above 250% of MFI,\nor above $192,000 in income for a family of four.'// <b>High Income</b> \n192K or more'];
+		public var mfiTips:Array = ['<b>“Extremely Low Income”</b> runs from 0% to 30% of MFI,\nor from $0 to $23,050 in income for a family of four.', 
+			'<b>“Very Low Income”</b> runs from 30% to 50% of MFI,\nor from $23,050 to $38,400 in income for a family of four.', 
+			'<b>“Low Income”</b> runs from 50% to 80% of MFI,\nor from $38,400 to $61,450 in income for a family of four.',
+			'<b>“Moderate Income”</b> runs from 80% to 120% of MFI,\nor from $61,450 to $92,150 in income for a family of four.',
+			'<b>“Middle Income”</b> runs from 120% to 250% of MFI,\nor from $92,150 to $192,000 in income for a family of four.',
+			'<b>“High Income”</b> is above 250% of MFI,\nor above $192,000 in income for a family of four.'
 		];
 
-		protected var middle:MedianIncomeMarker;
-		protected var defaultIncomes:Array = [0, 23050, 38400, 61450, 76800, 91150, 192000];
 		
+		public var defaultIncomes:Array = [0, 23050, 38400, 61450, 76800, 91150, 192000];
+		
+		protected var mfiPopColors:Array = [ColorsCUP.YELLOW, ColorsCUP.RED, ColorsCUP.BROWN, ColorsCUP.BLUE, ColorsCUP.GREEN, ColorsCUP.PINK];
+		protected var mfiColors:Array = [0x000000, ColorsCUP.YELLOW, ColorsCUP.RED, ColorsCUP.BROWN, ColorsCUP.BLUE, ColorsCUP.BLUE, ColorsCUP.GREEN, ColorsCUP.PINK];
+
+		
+		protected var min:int = 0;
+		protected var max:int = int(maxmfi * 1); 
+		protected var grain:int = 100;
+		
+		
+		protected var middle:MedianIncomeMarker;
 		
 
 		protected var popPercents:Array = [0, .3, .5, .8, 1.2, 2.5];
@@ -74,8 +79,18 @@ package com.cup.display {
 		
 		protected var spillUp:int = 35;
 		
-		public function IncomeChart(w:Number = 0, h:Number = 0) {
+		public function IncomeChart(w:Number = 0, h:Number = 0, mfiData:Object=null) {
 			super(w, h, null);
+
+			this.mfi = int(mfiData.mfi);
+			this.maxmfi = int(mfiData.mfi);
+			this.minmfi = int(mfiData.mfi);
+			this.mfiDescription = mfiData.mfiDescription;
+			this.mfiIncomes = mfiData.mfiIncomes;
+			this.defaultIncomes = mfiData.mfiIncomes;
+			this.mfiLabels = [mfiData.mfiLabel0, mfiData.mfiLabel1, mfiData.mfiLabel2, mfiData.mfiLabel3, mfiData.mfiLabel4, mfiData.mfiLabel5];
+			this.mfiPercents = mfiData.mfiPercents;
+			this.mfiTips = [mfiData.mfiTip0, mfiData.mfiTip1, mfiData.mfiTip2, mfiData.mfiTip3, mfiData.mfiTip4, mfiData.mfiTip5];
 			
 			chart = new LabelPropBlockSprite(mfiLabels, mfiTips, mfiPopColors, [0, .3, .5, .8, 1.2, 2.5, (2.5 * 1.1)], (2.5 * 1.1), w, h + spillUp);
 			addChild(chart);
@@ -97,9 +112,7 @@ package com.cup.display {
 			addChild(rentLabels);
 			
 			if (!middle) {
-				middle = new MedianIncomeMarker(medianFamilyIncome, 1, 'The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. ' +
-					'These categories are expressed as percentages of the “median family income.” ' +
-					'The MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $76,800 per year');
+				middle = new MedianIncomeMarker(medianFamilyIncome, 1, mfiDescription);
 				middle.addEventListener(MouseEvent.CLICK, middle.onClick);
 				addChild(middle);
 				

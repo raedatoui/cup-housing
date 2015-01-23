@@ -20,7 +20,6 @@ package {
 	import com.shashi.model.MapSyncer;
 	import com.shashi.ui.DropdownButton;
 	import com.shashi.ui.TextDropdown;
-
 	import com.stamen.display.ApplicationBase;
 	import com.stamen.graphics.color.RGB;
 	import com.stamen.graphics.color.RGBA;
@@ -61,15 +60,15 @@ package {
 
 
 		protected var SETTINGS_FILE:String = 'data/settings.json';
-
+		protected var loadedData:Object;
 
 		// settings
 		protected var defaultBaseURL:String = '';
 		protected var defaultInitialSubBoro:String = '';
 		protected var defaultDataURL:String = 'income_data.txt';
 		protected var defaultMapURL:String = 'nyc_mercator_subboro.swf';
+		protected var defaultShapeURL:String = 'nyc.swf';
 		protected var defaultProdURL:String = 'http://envisioningdevelopment.net';		
-		//protected var defaultMap:String = 'nyc.swf'
 		protected var year:int = 2006;
 
 		//content
@@ -185,8 +184,10 @@ package {
 		}
 		
 		protected function parseSettingsData(data:Object):void {
+			this.loadedData = data;
 			this.defaultBaseURL = data.settings.baseURL;
 			this.defaultMapURL = data.settings.mapURL;
+			this.defaultShapeURL = data.settings.shapeURL;
 			this.defaultDataURL = data.settings.dataURL;
 			this.defaultProdURL = data.settings.prodURL;
 			this.year = data.settings.year;
@@ -200,7 +201,8 @@ package {
 		
 		override public function applyParameter(name:String, value:String):Boolean
 		{
-
+			trace("param applied  " + name);
+			
 			switch (name)
 			{
 				case 'subboro':
@@ -252,7 +254,7 @@ package {
 			hover.mouseEnabled = hover.mouseChildren = false;
 			addChild(hover);
 
-			chart = new IncomeChart(stage.stageWidth, 60);
+			chart = new IncomeChart(stage.stageWidth, 60,  this.loadedData.mfi);
 			chart.addEventListener(IncomeChart.RENT_CHANGED, onRentUpdate);
 			addChild(chart);
 
@@ -282,7 +284,7 @@ package {
 			Security.allowDomain(this.defaultProdURL);
 
 			loader = new Loader();
-			loader.load(new URLRequest(defaultBaseURL + this.defaultMapURL), new LoaderContext(true)); //this used to load map.swf
+			loader.load(new URLRequest(defaultBaseURL + this.defaultShapeURL), new LoaderContext(true)); //this used to load map.swf
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoad);
 
 			addIntroShield();

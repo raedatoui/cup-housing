@@ -2,6 +2,7 @@
     "settings":{
         "baseURL": "http://localhost/",
         "mapURL": "maps/nyc_mercator_subboro.swf",
+        "shapeURL": "maps/nyc.swf",
         "dataURL": "data/2013-income.csv",
         "prodURL": "http://envisioningdevelopment.net",
         "year": 2013
@@ -60,9 +61,12 @@
     },
     "mfi": {
         "mfi": 83000,
+        "maxfi": 200000,
+        "minfi": 25750,
         "mfiIncomes": [0,24900,41500,66400,99600,207500],
         "mfiDescription": "The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the median family income.\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $83,000 per year.",
         "mfiPercents": [0, 0.3, 0.5, 0.8, 1, 1.2, 2.5],
+
         "mfiLabel0": "<b>Extremely Low Income</b>\n24K or less",
         "mfiLabel1": "<b>Very Low Income</b>\n24K-41K",
         "mfiLabel2": "<b>Low Income</b>\n41K-66K",

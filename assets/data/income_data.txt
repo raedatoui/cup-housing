@@ -1,4 +1,4 @@
-MapID	Area Name		"Families w/ Income < $23,050"	"Families w/ Income btw. $23,050 Ã $38,400"	"Families w/ Income btw. $38,400 Ã $61,450"	"Families w/ Income btw. $61,450 Ã $91,150"	"Families w/ Income btw. $91,150 Ã $192,000"	"Families w/ Income > $192,000"	Total Families		Mediam Family Income (2006)
+MapID	Area Name		"Families w/ Income < $23,050"	"Families w/ Income btw. $23,050 Ð $38,400"	"Families w/ Income btw. $38,400 Ð $61,450"	"Families w/ Income btw. $61,450 Ð $91,150"	"Families w/ Income btw. $91,150 Ð $192,000"	"Families w/ Income > $192,000"	Total Families		Mediam Family Income (2006)
 	New York City		"409,368"	"287,590"	"340,443"	"297,779"	"362,500"	"125,289"	"1,822,967"		"$51,830"
 	Bronx		"106,751"	"57,039"	"63,577"	"41,246"	"36,841"	"4,033"	"309,487"		"$36,013"
 101		Mott Haven/Hunts Point	"13,806"	"5,590"	"4,510"	"1,906"	"1,850"	93	"27,756"		"$23,426"
