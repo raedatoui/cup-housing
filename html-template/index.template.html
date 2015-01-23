@@ -41,13 +41,14 @@
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                  if (success)
-                    success(JSON.parse(xhr.responseText));
-              } else {
-                  if (error)
-                    error(xhr);
-              }
+            if (xhr.status === 200) {
+              if (success)
+                success(JSON.parse(xhr.responseText));
+            }
+            else {
+              if (error)
+                error(xhr);
+            }
           }
         };
         xhr.open("GET", path, true);
@@ -65,7 +66,6 @@
 
       loadJSON('/data/settings.json',
         function(data) {
-          debugger;
           console.log(data);
         },
         function(xhr) { console.error(xhr); }
@@ -73,7 +73,7 @@
 
       for (var prop in flashvars)
         so.addVariable(prop, flashvars[prop]);
-      console.log(flashvars);
+
       so.write('swf');
 
     </script>

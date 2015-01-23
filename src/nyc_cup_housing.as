@@ -1,4 +1,5 @@
 package {
+	import com.adobe.serialization.json.JSON;
 	import com.cup.display.BoroDisplay;
 	import com.cup.display.IncomeChart;
 	import com.cup.display.SubBoroMap;
@@ -19,18 +20,24 @@ package {
 	import com.shashi.model.MapSyncer;
 	import com.shashi.ui.DropdownButton;
 	import com.shashi.ui.TextDropdown;
+
 	import com.stamen.display.ApplicationBase;
 	import com.stamen.graphics.color.RGB;
 	import com.stamen.graphics.color.RGBA;
-
+	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
+	import flash.display.Sprite;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
+	import flash.geom.Matrix;
+	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
@@ -38,21 +45,10 @@ package {
 	import flash.text.Font;
 	import flash.utils.Dictionary;
 	import flash.utils.setTimeout;
-
+	
 	import gs.TweenFilterLite;
 	import gs.TweenLite;
-
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-	import flash.display.DisplayObject;
-	import flash.geom.Matrix;
-
-	import flash.display.Sprite;
-	import flash.display.BitmapData;
-	import flash.geom.Rectangle;
-	import flash.geom.Matrix;
-	import flash.display.Bitmap;
-
+		
 	[SWF(backgroundColor="#FFFFFF")]
 	public class nyc_cup_housing extends ApplicationBase
 	{
@@ -64,9 +60,7 @@ package {
 		protected var chartStrip:BitmapData;
 
 
-		protected var content_url:String;
-		protected var data_url:String;
-		protected var settings_url:String;
+		protected var SETTINGS_FILE:String = 'data/settings.json';
 
 
 		// settings
@@ -137,12 +131,73 @@ package {
 
 		protected var currentArea:SubBoroIncomes;
 
-
+		
 		public function nyc_cup_housing()
 		{
 			super(RGB.grey(0x33));
 		}
 
+		override protected function onAddedToStage(event:Event):void {
+			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			if (initialized) {
+				stage.addEventListener(Event.RESIZE, onStageResize);
+				onStageResize(null);
+			}
+			else {
+				var urlRequest:URLRequest  = new URLRequest(SETTINGS_FILE);
+	
+				var urlLoader:URLLoader = new URLLoader();
+				urlLoader.addEventListener(Event.COMPLETE, resumeStageInit);
+	
+				try{
+					urlLoader.load(urlRequest);
+				} catch (error:Error) {
+					trace("Cannot load settings : " + error.message);
+				}			
+
+			}
+		}
+		
+		protected function resumeStageInit(event:Event):void {
+			var loader:URLLoader = URLLoader(event.target);
+			var data:Object = JSON.decode(loader.data);
+			this.parseSettingsData(data);
+			
+			var swfURL:String = root.loaderInfo.url;
+			if (localPrefix.length > 0) {
+				runningLocally = (swfURL.substr(0, localPrefix.length) == localPrefix);
+			}
+			if (!runningLocally) {
+				swfPath = swfURL.substr(0, swfURL.lastIndexOf('/') + 1);
+			}
+			
+			applyParameters(root.loaderInfo.parameters);
+			
+			adjustStage();
+			stage.addEventListener(Event.RESIZE, onStageResize);
+			
+			createChildren();
+			onStageResize(null);
+			
+			initialize();			
+		}
+		
+		protected function parseSettingsData(data:Object):void {
+			this.defaultBaseURL = data.settings.baseURL;
+			this.defaultMapURL = data.settings.mapURL;
+			this.defaultDataURL = data.settings.dataURL;
+			this.defaultProdURL = data.settings.prodURL;
+			this.year = data.settings.year;
+
+			this.defaultIntroText = data.content.introText;
+			this.defaultQuestionMarkText = data.content.questionMarkText;
+			this.defaultRentIntroText = data.content.rentIntroText;
+			this.defaultWhatNowText = data.content.whatNowText;
+			this.defaultSelectorText = data.content.selectorText;
+		}
+		
 		override public function applyParameter(name:String, value:String):Boolean
 		{
 
@@ -153,7 +208,6 @@ package {
 					return true;
 				case 'baseURL':
 					defaultBaseURL = value;
-					trace("base url", value)
 					return true;
 				case 'mapURL':
 					defaultMapURL = value;
@@ -181,31 +235,6 @@ package {
 			}
 			return false;
 		}
-
-//		protected function loadConfigFromUrl():void
-//		{
-//			var urlRequest:URLRequest  = new URLRequest(CONFIG_URL);
-//
-//			var urlLoader:URLLoader = new URLLoader();
-//			urlLoader.addEventListener(Event.COMPLETE, completeHandler);
-//
-//			try{
-//				urlLoader.load(urlRequest);
-//			} catch (error:Error) {
-//				trace("Cannot load : " + error.message);
-//			}
-//		}
-//
-//		private static function completeHandler(event:Event):void {
-//			var loader:URLLoader = URLLoader(event.target);
-//			trace("completeHandler: " + loader.data);
-//
-//			var data:Object = JSON.parse(loader.data);
-//			trace("The answer is " + data.id+" ; "+data.first_var+" ; "+data.second_var);
-//			//All fields from JSON are accessible by theit property names here/
-//		}
-//
-
 
 		override protected function createChildren():void
 		{
@@ -301,19 +330,23 @@ package {
 
 			map.putMarker(SubBoroMap.CENTER, subBoroShapes);
 			syncer = new MapSyncer(map, subBoroShapes);
-
+			
 			var urlLoader:URLLoader = new URLLoader(new URLRequest(defaultBaseURL + defaultDataURL));
 			urlLoader.addEventListener(Event.COMPLETE, onDataLoad);
+			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onDataError);
 		}
-
+	
+		protected function onDataError(event:Event):void {
+			trace(event);
+		}
+		
 		protected function onDataLoad(event:Event):void
-		{
+		{			
 			var urlLoader:URLLoader = event.currentTarget as URLLoader;
 			urlLoader.removeEventListener(Event.COMPLETE, onDataLoad);
-
 			var data:Array = (urlLoader.data as String).split('\n').slice(1);
-
 			urlLoader = null;
+			
 			for each (var line:String in data)
 			{
 				var subBoro:SubBoroIncomes = SubBoroIncomes.fromTxt(line);

@@ -16,7 +16,8 @@ package com.cup.model {
 		}
 		
 		public static function fromTxt(txt:String):SubBoroIncomes {
-			var values:Array = txt.split('\t');
+			var values:Array = txt.split(',');
+			trace(values.length);
 			
 			if (values.length > 10) {
 				var sub:SubBoroIncomes = new SubBoroIncomes();
