@@ -60,25 +60,27 @@
         "selectorText": "Select an area from the list."
     },
     "mfi": {
-        "mfi": 83000,
+        "mfi": 85900,
         "maxfi": 200000,
         "minfi": 25750,
-        "mfiIncomes": [0,24900,41500,66400,99600,207500],
+        "mfiIncomes": [0,25750,42950,85900,103080,200000],
+        "mfiIncomes2": [0,25750,42950,85900,85900,103080,200000],
         "mfiDescription": "The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the median family income.\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $83,000 per year.",
-        "mfiPercents": [0, 0.3, 0.5, 0.8, 1, 1.2, 2.5],
+        "mfiPercents": [0, 0.3, 0.5, 1, 1.2, 2.32],
+        "mfiPercents2": [0, 0.3, 0.5, 1, 1, 1.2, 2.32],
 
-        "mfiLabel0": "<b>Extremely Low Income</b>\n24K or less",
-        "mfiLabel1": "<b>Very Low Income</b>\n24K-41K",
-        "mfiLabel2": "<b>Low Income</b>\n41K-66K",
-        "mfiLabel3": "<b>Moderate Income</b>\n66K-99K",
-        "mfiLabel4": "<b>Middle Income</b>\n99K-207K",
-        "mfiLabel5": "<b>High Income</b>\n207K or more",
+        "mfiLabel0": "<b>Extremely Low Income</b>\n25K or less",
+        "mfiLabel1": "<b>Very Low Income</b>\n25K-43K",
+        "mfiLabel2": "<b>Low Income</b>\n43K-86K",
+        "mfiLabel3": "<b>Moderate Income</b>\n86K-104K",
+        "mfiLabel4": "<b>Middle Income</b>\n104K-200K",
+        "mfiLabel5": "<b>High Income</b>\n200K or more",
 
-        "mfiTip0": "<b>Extremely Super Low Income</b> runs from 0%25 to 30%25 of MFI,\nor from $0 to $24,900 in income for a family of four.",
-        "mfiTip1": "<b>Very Low Income</b> runs from 30%25 to 50%25 of MFI,\nor from $24,900 to $41,500 in income for a family of four.",
-        "mfiTip2": "<b>Low Income</b> runs from 50%25 to 80%25 of MFI,\nor from $41,500 to $66,400 in income for a family of four.",
-        "mfiTip3": "<b>Moderate Income</b> runs from 80%25 to 120%25 of MFI,\nor from $66,400 to $99,600 in income for a family of four.",
-        "mfiTip4": "<b>Middle Income</b> runs from 120%25 to 250%25 of MFI,\nor from $99,600 to $207,500 in income for a family of four.",
-        "mfiTip5": "<b>High Income</b> is above 250%25 of MFI,\nor above $207,500 in income for a family of four."
+        "mfiTip0": "<b>Extremely Super Low Income</b> runs from 0% to 30% of MFI,\nor from $0 to $25,750 in income for a family of four.",
+        "mfiTip1": "<b>Very Low Income</b> runs from 30% to 50% of MFI,\nor from $$25,750 to $42,950 in income for a family of four.",
+        "mfiTip2": "<b>Low Income</b> runs from 50% to 100% of MFI,\nor from $42,950 to $85,900 in income for a family of four.",
+        "mfiTip3": "<b>Moderate Income</b> runs from 100% to 120% of MFI,\nor from $85,900 to $103,080 in income for a family of four.",
+        "mfiTip4": "<b>Middle Income</b> runs from 120% to 230% of MFI,\nor from $103,080 to $200,000 in income for a family of four.",
+        "mfiTip5": "<b>High Income</b> is above 230% of MFI,\nor above $200,000 in income for a family of four."
     }
 }

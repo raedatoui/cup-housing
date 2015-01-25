@@ -15,7 +15,7 @@ package com.cup.display {
 		protected var bgColor:uint = 0;
 		protected var _income:int = 0;
 		protected var _percent:Number = 0;
-		
+		protected var mfiDescription:String;
 		protected var label:TextField;
 		
 		protected var big:Boolean = false;
@@ -28,11 +28,12 @@ package com.cup.display {
 		protected var sHeight:Number;
 		protected var bWidth:Number;
 		protected var bHeight:Number;
+	
 		
 		public function MedianIncomeMarker(initIncome:int, percent:Number, labelText:String) {
 			super();
 			_percent = percent;
-			
+			mfiDescription = labelText;
 			label = TextMaker.createTextField(20);
 			addChild(label);
 			
@@ -58,9 +59,7 @@ package com.cup.display {
 				_income = value;
 				label.text = int(_percent * 100) + '% MFI';
 				
-				rentText.htmlText = 'The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. ' +
-					'These categories are expressed as percentages of the “median family income.” ' +
-					'\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $76,800 per year.'; //This is ' + int(_percent * 100) + '% of MFI.';
+				rentText.htmlText = this.mfiDescription;
 				
 				sWidth = label.width + 10;
 				

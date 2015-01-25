@@ -11,8 +11,10 @@ package com.cup.display {
 	
 	public class LabelPropBlockSprite extends ProportionalBlockSprite implements TooltipProvider {
 		protected var texts:Array = [];
+		protected var popColumns:Array;
 		
-		public function LabelPropBlockSprite(labels:Array, tips:Array, blockColors:Array, blockPercents:Array, maxPercent:Number = 1, w:Number = 0, h:Number = 0, color:IColor = null) {
+		public function LabelPropBlockSprite(columns:Array, labels:Array, tips:Array, blockColors:Array, blockPercents:Array, maxPercent:Number = 1, w:Number = 0, h:Number = 0, color:IColor = null) {
+			this.popColumns = columns;
 			for (var i:int = 0; i < labels.length; i++) {
 				var str:String = labels[i];
 				if (str.length) {
@@ -42,6 +44,7 @@ package com.cup.display {
 				field.width = cw;
 				field.x = cx + 4;
 			}
+			popColumns[index].x = cx-3;
 		}
 		
 		public function getTooltipText():String {

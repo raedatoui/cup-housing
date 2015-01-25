@@ -25,7 +25,7 @@ package com.cup.display {
 			refresh();
 		}
 		
-		override protected function resize():void {
+		override public function resize():void {
 			var cy:Number = padding.top;
 			var cx:Number = padding.left;
 			for each (var field:TextField in fields) {

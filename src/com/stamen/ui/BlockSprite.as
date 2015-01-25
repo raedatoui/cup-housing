@@ -32,7 +32,7 @@ public class BlockSprite extends ColorSprite {
     }
 
 
-    protected function resize():void {
+    public function resize():void {
         draw();
     }
 

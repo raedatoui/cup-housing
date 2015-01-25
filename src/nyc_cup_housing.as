@@ -26,6 +26,7 @@ package {
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.BlendMode;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Loader;
@@ -276,9 +277,6 @@ package {
 			display.addEventListener(BoroDisplay.CLOSE, onBoroClose);
 			addChild(display);
 
-			selector = new TextDropdown(this.defaultSelectorText);
-			selector.addEventListener(Event.CHANGE, onSelectorChange);
-			addChild(selector);
 
 			Security.allowDomain('*');
 			Security.allowDomain(this.defaultProdURL);
@@ -291,6 +289,10 @@ package {
 
 			tooltip = new CUPTooltip();
 			addChild(tooltip);
+
+			selector = new TextDropdown(this.defaultSelectorText, '', 215);
+			selector.addEventListener(Event.CHANGE, onSelectorChange);
+			addChild(selector);
 		}
 
 		protected function onChartStripError(event:ErrorEvent):void
@@ -435,7 +437,9 @@ package {
 		protected function onChartToggle(event:Event):void
 		{
 			chart.grouped = !chart.grouped;
-
+			if(!chart.grouped)
+				chart.realignColumns();
+			
 			if (currentArea)
 				chart.setPopulation(currentArea.incomeLevels, chart.currentGranularity);
 		}
@@ -637,7 +641,7 @@ package {
 				return null;
 		}
 
-		override protected function resize():void
+		override public function resize():void
 		{
 			super.resize();
 
@@ -665,8 +669,8 @@ package {
 
 			if (selector)
 			{
-				selector.x = 13;
-				selector.y = map.y - 50;
+				selector.x = 20;
+				selector.y = 320;
 			}
 		}
 	}

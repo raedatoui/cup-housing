@@ -62,21 +62,17 @@
       so.addParam('menu', 'true');
 
       var flashvars = {};
-
-      flashvars['subboro'] = getQueryParamValue('id'),
-
-      loadJSON('/data/settings.json',
-        function(data) {
-          console.log(data);
-        },
-        function(xhr) { console.error(xhr); }
-      );
-
+      flashvars['subboro'] = getQueryParamValue('id');
       for (var prop in flashvars)
         so.addVariable(prop, flashvars[prop]);
-
+      // loadJSON('/data/settings.json',
+      //   function(data) {
+      //     console.log(data);
+      //   },
+      //   function(xhr) { console.error(xhr); }
+      // );
       so.write('swf');
-
     </script>
+
   </div>
 </body></html>

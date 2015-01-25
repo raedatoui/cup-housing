@@ -1,4 +1,5 @@
 package com.shashi.ui {
+import com.cup.BoroSelectPrompt;
 import com.stamen.graphics.color.RGB;
 import com.stamen.ui.BlockSprite;
 import com.stamen.ui.tooltip.TooltipBlocker;
@@ -28,7 +29,7 @@ public class TextDropdown extends Sprite implements TooltipBlocker {
 
         type = initType;
 
-        show = new DropdownButton(initText, '', w, 12, 0xFFFFFF, true, 0x666666);
+        show = new BoroSelectPrompt(initText, '', w, 12, 0xFFFFFF, true, 0x333333);
         addChild(show);
 
         drop = new Sprite();

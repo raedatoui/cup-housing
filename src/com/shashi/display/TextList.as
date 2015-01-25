@@ -127,7 +127,7 @@ public class TextList extends BlockSprite {
         resize();
     }
 
-    override protected function resize():void {
+    override public function resize():void {
         super.resize();
 
         var cy:Number = padding.top;
