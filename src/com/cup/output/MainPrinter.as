@@ -1,7 +1,7 @@
 package com.cup.output {
 	
-	import com.cup.output.PDFCompositor;
 	import com.cup.model.SubBoroIncomes;
+	import com.cup.output.PDFCompositor;
 	import com.fonts.ConduitBold;
 	import com.fonts.ConduitMedium;
 	
@@ -13,10 +13,11 @@ package com.cup.output {
 		public var regularFont:Font = new ConduitMedium();
 		public var boldFont:Font = new ConduitBold();
 		public var testData:BitmapData = new BitmapData(50, 50, false, 0xff0000);
+		protected var baseURL:String; 
 		
-		
-		public function MainPrinter() {
-			this.spoofIncomes();
+		public function MainPrinter(incomes:Array, baseURL:String) {
+			this.incomeData = incomes;
+			this.baseURL = baseURL;
 		}
 		
 		public function spoofIncomes():void {
@@ -123,7 +124,8 @@ package com.cup.output {
 		}
 		
 		public function outputPDF(incomes:Array, sel:Array, r:int, strip1:BitmapData, strip2:BitmapData, squareVal:int):void {
-			var testPDF:PDFCompositor = new PDFCompositor("http://envisioningdevelopment.net/flash/resources/NYC_mercator_all.svg", strip1, strip2, incomes, sel, r, squareVal, regularFont, boldFont);
+			var mercatorURL:String = baseURL + 'maps/nyc_mercator_all.svg';
+			var testPDF:PDFCompositor = new PDFCompositor(mercatorURL, strip1, strip2, incomes, sel, r, squareVal, regularFont, boldFont);
 			
 		}
 	}

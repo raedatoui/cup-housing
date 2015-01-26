@@ -121,13 +121,14 @@ package {
 		protected var chart:IncomeChart;
 
 		// pdf maker
-		protected var pdfGenerator:MainPrinter = new MainPrinter();
+		protected var pdfGenerator:MainPrinter;
 
 		// csv data
 		protected var incomeByName:Dictionary = new Dictionary(true);
 		protected var incomeByArea:Dictionary = new Dictionary(true);
 		protected var incomeByBorough:Dictionary = new Dictionary(true);
 		protected var incomesContainedByBoro:Dictionary = new Dictionary(true);
+		protected var incomes:Array = [];
 
 		protected var currentArea:SubBoroIncomes;
 
@@ -356,6 +357,7 @@ package {
 				var subBoro:SubBoroIncomes = SubBoroIncomes.fromTxt(line);
 				if (subBoro)
 				{
+					incomes.push(subBoro);
 					if (subBoro.id.length && subBoro.name.length)
 					{
 						var butt:DropdownButton = new DropdownButton(subBoro.name, '', 250, 12, 0xCCCCCC, false);
@@ -391,6 +393,7 @@ package {
 					focusByBoro(init.id, .5);
 				}
 			}
+			this.pdfGenerator = new MainPrinter(this.incomes, this.defaultBaseURL);
 		}
 
 		protected function focusByBoro(id:String, delay:Number=0):void
