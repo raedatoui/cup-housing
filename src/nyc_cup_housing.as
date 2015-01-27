@@ -48,7 +48,9 @@ package {
 	
 	import gs.TweenFilterLite;
 	import gs.TweenLite;
-		
+	
+	import com.cup.model.ColorsCUP;
+	
 	[SWF(backgroundColor="#FFFFFF")]
 	public class nyc_cup_housing extends ApplicationBase
 	{
@@ -69,7 +71,9 @@ package {
 		protected var defaultDataURL:String = 'income_data.txt';
 		protected var defaultMapURL:String = 'nyc_mercator_subboro.swf';
 		protected var defaultShapeURL:String = 'nyc.swf';
-		protected var defaultProdURL:String = 'http://envisioningdevelopment.net';		
+		protected var defaultProdURL:String = 'http://envisioningdevelopment.net';
+		protected var defaultShapePrintURL:String = 'nyc_mercator_all.svg';
+		protected var defaultPrintURL:String = 'create.php';
 		protected var year:int = 2006;
 
 		//content
@@ -192,6 +196,8 @@ package {
 			this.defaultShapeURL = data.settings.shapeURL;
 			this.defaultDataURL = data.settings.dataURL;
 			this.defaultProdURL = data.settings.prodURL;
+			this.defaultPrintURL = this.defaultBaseURL + data.settings.printURL;
+			this.defaultShapePrintURL = this.defaultBaseURL + data.settings.shapePrintURL;
 			this.year = data.settings.year;
 
 			this.defaultIntroText = data.content.introText;
@@ -393,7 +399,18 @@ package {
 					focusByBoro(init.id, .5);
 				}
 			}
-			this.pdfGenerator = new MainPrinter(this.incomes, this.defaultBaseURL);
+			var colors:Array = [ColorsCUP.YELLOW, ColorsCUP.RED, ColorsCUP.BROWN, ColorsCUP.BLUE, ColorsCUP.GREEN, ColorsCUP.PINK];
+			var descriptions:Array = [];
+			var ranges:Array = [];
+			var mfiData:Object = this.loadedData.mfi;
+			var prop:String;
+			for(var i:int=0; i < 6; i++) {
+				prop = 'mfiPrintLabel'+ i.toString();
+				descriptions.push(mfiData[prop]["title"]);
+				ranges.push(mfiData[prop]["range"]);
+			}
+
+			this.pdfGenerator = new MainPrinter(this.incomes, this.defaultPrintURL, this.defaultShapePrintURL, colors, descriptions, ranges);
 		}
 
 		protected function focusByBoro(id:String, delay:Number=0):void
@@ -597,28 +614,22 @@ package {
 
 		public function sendSelectionToPrint(incomes:Array, ids:Array):void
 		{
-			//			if (pdfGenerator && pdfGenerator.content && currentArea)
-			//			{
-			//				(pdfGenerator.content as Object)['printSinglePDF'](currentArea.id, chart.rentAmount, (new CHART_PNG1() as Bitmap).bitmapData, (new CHART_PNG2() as Bitmap).bitmapData);
-			//				display.onPDFStart();
-			//				setTimeout(display.onPDFComplete, 5000);
-			//			}
 
 			if (pdfGenerator && currentArea)
 			{
 				// test boundaries in test's parent coordinate space
-				var rect:Rectangle = this.chart.getRect(this.chart.parent);
+				var rect:Rectangle = this.chart.getRect(this.chart.chart.parent);
 				var bmp:BitmapData = new BitmapData(rect.width, rect.height, false, 0xFFFF0000);
 
 				// copy transform matrix
-				var matrix:Matrix = this.chart.transform.matrix;
+				var matrix:Matrix = this.chart.chart.transform.matrix;
 
 				// translate test's matrix to match it with bitmap
 				matrix.translate(-rect.x, -rect.y);
 
-				bmp.draw(this.chart, matrix);
+				bmp.draw(this.chart.chart, matrix);
 
-				pdfGenerator.printSinglePDF(currentArea.id, chart.rentAmount, bmp, (new CHART_PNG2() as Bitmap).bitmapData);
+				pdfGenerator.printSinglePDF(currentArea.id, chart.rentAmount, bmp, bmp);
 				display.onPDFStart();
 				setTimeout(display.onPDFComplete, 5000);
 			}

@@ -18,7 +18,7 @@ package com.cup.display {
 
 		// display
 		protected var rentLabels:RentMarkerManager;
-		protected var chart:LabelPropBlockSprite;
+		public var chart:LabelPropBlockSprite;
 		protected var chartLabels:PropLabelSprite;
 
 		protected var dotsByValue:Dictionary = new Dictionary(true);

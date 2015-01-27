@@ -5,7 +5,9 @@
         "shapeURL": "maps/nyc.swf",
         "dataURL": "data/2013-income.csv",
         "prodURL": "http://envisioningdevelopment.net",
-        "year": 2013
+        "year": 2013,
+        "printURL": "create.php",
+        "shapePrintURL": "maps/nyc_mercator_all.svg"
     },
 
     "boro_data": {
@@ -81,6 +83,13 @@
         "mfiTip2": "<b>Low Income</b> runs from 50% to 100% of MFI,\nor from $42,950 to $85,900 in income for a family of four.",
         "mfiTip3": "<b>Moderate Income</b> runs from 100% to 120% of MFI,\nor from $85,900 to $103,080 in income for a family of four.",
         "mfiTip4": "<b>Middle Income</b> runs from 120% to 230% of MFI,\nor from $103,080 to $200,000 in income for a family of four.",
-        "mfiTip5": "<b>High Income</b> is above 230% of MFI,\nor above $200,000 in income for a family of four."
+        "mfiTip5": "<b>High Income</b> is above 230% of MFI,\nor above $200,000 in income for a family of four.",
+
+        "mfiPrintLabel0": {"title":"Extremely Low Income", "range": "($25K or less)"},
+        "mfiPrintLabel1": {"title": "Very Low Income", "range": "($25K to $43K)"},
+        "mfiPrintLabel2": {"title": "Low Income", "range": "($43K to $86K)"},
+        "mfiPrintLabel3": {"title": "Moderate Income", "range": "($86K to $104K)"},
+        "mfiPrintLabel4": {"title": "Middle Income", "range": "($104K to $200K)"},
+        "mfiPrintLabel5": {"title": "High Income", "range": "($200K or more)"}
     }
 }

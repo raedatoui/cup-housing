@@ -1,6 +1,6 @@
 package com.cup.model {
 	public class ColorsCUP {
-		public static const YELLOW:uint = 0xF49B18; // 0xFFD400;
+		public static const YELLOW:uint = 0xF49B18;
 		public static const RED:uint = 0xED1C24;
 		public static const BROWN:uint = 0x5E0F0C;
 		public static const BLUE:uint = 0x2B338C;
