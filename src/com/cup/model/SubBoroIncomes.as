@@ -19,7 +19,7 @@ package com.cup.model {
 			var values:Array = txt.split(',');
 			trace(values.length);
 			
-			if (values.length > 10) {
+			if (values.length >= 10) {
 				var sub:SubBoroIncomes = new SubBoroIncomes();
 				sub.id = values[0].toString();
 				sub.borough = values[1].toString();
@@ -30,7 +30,7 @@ package com.cup.model {
 					sub.incomeLevels.push(NumberFormat.stripCommas(values[i]));
 				}
 				
-				sub.medianIncome = NumberFormat.stripCommas(values[11]);
+				sub.medianIncome = NumberFormat.stripCommas(values[10]);
 				
 				return sub;
 			}
