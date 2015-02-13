@@ -1,13 +1,11 @@
 {
     "settings":{
-        "baseURL": "http://localhost/",
+        "baseURL": "http://envisioningdevelopment.net/flash/2013/",
         "mapURL": "maps/nyc_mercator_subboro.swf",
         "shapeURL": "maps/nyc.swf",
         "dataURL": "data/2013-income.csv",
         "prodURL": "http://envisioningdevelopment.net",
-        "year": 2013,
-        "printURL": "create.php",
-        "shapePrintURL": "maps/nyc_mercator_all.svg"
+        "year": 2013
     },
 
     "boro_data": {
@@ -56,40 +54,33 @@
 
     "content": {
         "introText": "Who lives here? Who can afford to live here?\n\nYou can use this site to look at income demographics and rents in neighborhoods all over New York City.\n\n When you click on a neighborhood, you'll map the number of families in each income category on the multicolored bar at the bottom of the page.\n\nCome inside to see how it works and why it matters!",
-        "questionMarkText": "Web &amp; Information Design:\n<a href='http://www.postarchitectural.com'>Sha Hwang</a>, <a href='http://www.virtualclockwork.com'>Zach Watson</a>, and <a href='http://http://thatdesignfirm.com'>William Wang</a>\n\nConcept &amp; Project Direction:\nRosten Woo and John Mangin of the <a href='http://anothercupdevelopment.org'>Center for Urban Pedagogy</a>\n\nAdditional Design:\nGlen Cummings of <a href='http://www.mtwtf.org'>MTWTF</a>\n\nMapping Asssistance:\nInbar Kishoni\n\nData Hosting:\ncloudshare",
+        "questionMarkText": "Web &amp; Information Design:\n<a href='http://www.postarchitectural.com'>Sha Hwang</a>, <a href='http://www.virtualclockwork.com'>Zach Watson</a>, <a href='http://http://thatdesignfirm.com'>William Wang</a>, and Raed Atoui\n\nConcept &amp; Project Direction:\nRosten Woo, John Mangin, and Mark Torrey of the <a href='http://anothercupdevelopment.org'>Center for Urban Pedagogy</a>\n\nAdditional Design:\nGlen Cummings of <a href='http://www.mtwtf.org'>MTWTF</a>\n\nMapping Asssistance:\nInbar Kishoni\n\nData Hosting:\ncloudshare",
         "rentIntroText": "Who Can Afford to Live Here?\n\nWhat's 'affordable'?\n The government says that housing is 'affordable' if you spend 30% or less of your income to live there.\n\nThe bottom number on this color bar translates your annual income into 'affordable' monthly rent. Thirty percent of $20,000 per year, for instance, is $500 per month.\n\nUse the rent sliders to estimate how much it costs to rent a one-, two-, and three-bedroom apartment in that neighborhood.",
         "whatNowText": "To learn more about how affordable housing works in your neighborhood,\norder or download the book 'What Is Affordable Housing?' or order the 'What Is Affordable Housing?' workshop kit.\n\nFind out more <a href='http://envisioningdevelopment.net'>here</a>.",
-        "selectorText": "Select an area from the list."
+        "selectorText": "Select an area from the list:"
     },
     "mfi": {
         "mfi": 85900,
         "maxfi": 200000,
         "minfi": 25750,
-        "mfiIncomes": [0,25750,42950,85900,103080,200000],
-        "mfiIncomes2": [0,25750,42950,85900,85900,103080,200000],
-        "mfiDescription": "The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the median family income.\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $83,000 per year.",
+        "mfiIncomes": [0,25750,42950,68700,103080,200000],
+        "mfiIncomes2": [0,25750,42950,68700,85900,103080,200000],
+        "mfiDescription": "The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the Median Family Income.\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $85,900 per year.",
         "mfiPercents": [0, 0.3, 0.5, 1, 1.2, 2.32],
         "mfiPercents2": [0, 0.3, 0.5, 1, 1, 1.2, 2.32],
 
         "mfiLabel0": "<b>Extremely Low Income</b>\n25K or less",
         "mfiLabel1": "<b>Very Low Income</b>\n25K-43K",
-        "mfiLabel2": "<b>Low Income</b>\n43K-86K",
-        "mfiLabel3": "<b>Moderate Income</b>\n86K-104K",
+        "mfiLabel2": "<b>Low Income</b>\n43K-69K",
+        "mfiLabel3": "<b>Moderate Income</b>\n69K-104K",
         "mfiLabel4": "<b>Middle Income</b>\n104K-200K",
         "mfiLabel5": "<b>High Income</b>\n200K or more",
 
-        "mfiTip0": "<b>Extremely Super Low Income</b> runs from 0% to 30% of MFI,\nor from $0 to $25,750 in income for a family of four.",
+        "mfiTip0": "<b>Extremely Low Income</b> runs from 0% to 30% of MFI,\nor from $0 to $25,750 in income for a family of four.",
         "mfiTip1": "<b>Very Low Income</b> runs from 30% to 50% of MFI,\nor from $$25,750 to $42,950 in income for a family of four.",
-        "mfiTip2": "<b>Low Income</b> runs from 50% to 100% of MFI,\nor from $42,950 to $85,900 in income for a family of four.",
-        "mfiTip3": "<b>Moderate Income</b> runs from 100% to 120% of MFI,\nor from $85,900 to $103,080 in income for a family of four.",
+        "mfiTip2": "<b>Low Income</b> runs from 50% to 100% of MFI,\nor from $42,950 to $68,7000 in income for a family of four.",
+        "mfiTip3": "<b>Moderate Income</b> runs from 100% to 120% of MFI,\nor from $68,700 to $103,080 in income for a family of four.",
         "mfiTip4": "<b>Middle Income</b> runs from 120% to 230% of MFI,\nor from $103,080 to $200,000 in income for a family of four.",
-        "mfiTip5": "<b>High Income</b> is above 230% of MFI,\nor above $200,000 in income for a family of four.",
-
-        "mfiPrintLabel0": {"title":"Extremely Low Income", "range": "($25K or less)"},
-        "mfiPrintLabel1": {"title": "Very Low Income", "range": "($25K to $43K)"},
-        "mfiPrintLabel2": {"title": "Low Income", "range": "($43K to $86K)"},
-        "mfiPrintLabel3": {"title": "Moderate Income", "range": "($86K to $104K)"},
-        "mfiPrintLabel4": {"title": "Middle Income", "range": "($104K to $200K)"},
-        "mfiPrintLabel5": {"title": "High Income", "range": "($200K or more)"}
+        "mfiTip5": "<b>High Income</b> is above 230% of MFI,\nor above $200,000 in income for a family of four."
     }
 }
