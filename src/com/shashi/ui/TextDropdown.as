@@ -83,7 +83,6 @@ public class TextDropdown extends Sprite implements TooltipBlocker {
     protected function onClose(event:Event = null):void {
         if (event.target is UIButton)    return;
 
-        trace('closing');
         stage.removeEventListener(MouseEvent.MOUSE_UP, onClose);
         show.removeEventListener(MouseEvent.CLICK, onClose);
 
@@ -182,7 +181,7 @@ public class TextDropdown extends Sprite implements TooltipBlocker {
 
 //			if (Math.abs(dest - drop.y) > 20)
 //				TweenLite.to(drop, .2, {y:dest});
-//			else 
+//			else
         drop.y = dest;
     }
 

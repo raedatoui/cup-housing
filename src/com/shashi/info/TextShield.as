@@ -64,18 +64,9 @@ public class TextShield extends Shield {
             var i:int = 34;
             text.setTextFormat(new TextFormat(ConduitTextMaker.boldConduit.fontName, i, 0xFFFFFF, true));
             while (text.textHeight > bg.height * .95 && i > 5) {
-                trace(i);
                 text.setTextFormat(new TextFormat(ConduitTextMaker.boldConduit.fontName, --i, 0xFFFFFF, true));
             }
 
-            // text.scaleX = text.scaleY = Math.min(1, (bg.height * .85) / text.textHeight);
-            // text.scaleX = text.scaleY = Math.min(1, (bg.height * .85) / text.textHeight);
-
-//				if (text.textHeight > bg.height * .85)
-//				{
-//					trace(text.scaleX);
-//					text.width = (bg.width - textPadding*2) / text.scaleX;
-//				}
         }
 
     }
