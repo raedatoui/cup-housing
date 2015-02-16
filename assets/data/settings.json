@@ -66,7 +66,7 @@
         "maxfi": 200000,
         "minfi": 25750,
         "mfiIncomes": [0,25750,42950,85900,103080,200000],
-        "mfiIncomes2": [0,25750,42950,85900,85900,103080,200000],
+        "mfiIncomes2": [0,25750,42950,85900,103080,200000, 220000],
         "mfiDescription": "The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the median family income.\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $83,000 per year.",
         "mfiPercents": [0, 0.3, 0.5, 1, 1.2, 2.32],
         "mfiPercents2": [0, 0.3, 0.5, 1, 1, 1.2, 2.32],

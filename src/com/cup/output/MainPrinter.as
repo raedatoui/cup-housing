@@ -2,34 +2,35 @@ package com.cup.output {
 	
 	import com.cup.model.SubBoroIncomes;
 	import com.cup.output.PDFCompositor;
-	import com.fonts.ConduitBold;
-	import com.fonts.ConduitMedium;
 	
 	import flash.display.BitmapData;
 	import flash.text.Font;
 	
 	public class MainPrinter {
-		public var incomeData:Array = [];
-		public var regularFont:Font = new ConduitMedium();
-		public var boldFont:Font = new ConduitBold();
-		public var testData:BitmapData = new BitmapData(50, 50, false, 0xff0000);
 
 		protected var shapeURL:String;
 		protected var printURL:String;
 		protected var chartColors:Array;
 		protected var incomeDescriptions:Array;
 		protected var incomeRanges:Array;
+		protected var incomeBreakPoints:Array;
+		protected var incomeData:Array = [];
+		protected var year:int;
+		protected var mfi:int;
 		
-		public function MainPrinter(incomes:Array, printURL:String, shapeURL:String, colors:Array, descriptions:Array, ranges:Array) {
+		public function MainPrinter(incomes:Array, printURL:String, shapeURL:String, colors:Array, descriptions:Array, ranges:Array, breakPoints:Array, year:int, mfi:int) {
 			this.incomeData = incomes;
 			this.shapeURL = shapeURL;
 			this.printURL = printURL;
 			this.chartColors = colors;
 			this.incomeDescriptions = descriptions;
 			this.incomeRanges = ranges;
+			this.incomeBreakPoints = breakPoints;
+			this.year = year;
+			this.mfi = mfi/100;
 		}
 			
-		public function printSinglePDF(id:String, rent:int, strip1:BitmapData, strip2:BitmapData):void {
+		public function printSinglePDF(id:String, rent:int):void {
 			var selectBoroughs:Array = new Array;
 			var squareValue:int = 1000;
 			
@@ -55,20 +56,20 @@ package com.cup.output {
 					squareValue = 100;
 					break;
 				
-			}
+			}	
 			
 			for each (var income:SubBoroIncomes in incomeData) {
 				if (id == income.id) {
 					trace('found id:', id, income);
-					outputPDF([income], selectBoroughs, rent, strip1, strip2, squareValue);
+					outputPDF([income], selectBoroughs, rent, squareValue);
 					return;
 				}
 			}
 		}
 		
-		public function outputPDF(incomes:Array, boroughs:Array, rent:int, strip1:BitmapData, strip2:BitmapData, squareVal:int):void {
-			var testPDF:PDFCompositor = new PDFCompositor(printURL, shapeURL, squareVal, regularFont, boldFont, chartColors, incomeDescriptions, incomeRanges);
-			testPDF.print(incomes, boroughs, strip1, rent, false);
+		public function outputPDF(incomes:Array, boroughs:Array, rent:int, squareVal:int):void {
+			var testPDF:PDFCompositor = new PDFCompositor(printURL, shapeURL, squareVal, chartColors, incomeDescriptions, incomeRanges, incomeBreakPoints, year, mfi);
+			testPDF.print(incomes, boroughs, rent, false);
 		}
 	}
 }
