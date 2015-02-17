@@ -14,7 +14,11 @@ module.exports = function (grunt) {
           authPath: 'ftp_auth'
         },
         src: buildPath,
-        dest: uploadPath
+        dest: uploadPath,
+        exclusions: [buildPath + '/**/.DS_Store',
+                      buildPath + '/com',
+                      buildPath + '/org',
+                      buildPath + '/nyc_cup_housing.html']
       }
     },
 
