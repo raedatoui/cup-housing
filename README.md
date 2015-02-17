@@ -1,5 +1,5 @@
-## Install prerequisites
-###1. Install Dev Tools
+## Prerequisites: Install Dev Tools
+###1. Install Xcode
 If you are installing grunt and npm for the first time, I recommend using homebrew
 
 Homebrew requires installing Xcode and the Command line Tools. You need an Apple ID to download Xcode from the App Store.
