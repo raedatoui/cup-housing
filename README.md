@@ -50,7 +50,7 @@ You need to do this only once after installing the pre-requisites
 ## Uploading JSON File
 The following grunt command and steps allow uploading only the data files (__settings.json__ and __2013-incomes.csv__) to the server. This is useful for updating the data on the server without having to create an entirely new build.
 
-Once edits have been made to the data files, they __must__ get committed and pushed to git.
+Once edits have been made to a satisfactory level, the best practice would consist of committing and pushing the changed data files to git.
 
 ### Using grunt command
 * run `grunt data` and the data files will uploaded to the server
@@ -62,9 +62,9 @@ Once edits have been made to the data files, they __must__ get committed and pus
 #### Iterative edits and uploads
 * open and edit any of the files in __assets/data__
 * any changes to made on any file will automatically start the upload of the data files to the server
-* this process is triggered as soon as file as saved
+* this process is triggered as soon as a file is saved
 * reload the site and check that data is updated
-* rinse and repeat from step 2
+* rinse and repeat
 
  
  
