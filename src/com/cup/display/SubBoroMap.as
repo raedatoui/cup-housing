@@ -78,10 +78,15 @@ package com.cup.display {
 		public function selectEntireRange(boroID:String):void {
 			// entire boroughs are described by the first character
 			var inc:int = 0;
+			var includeAll:Boolean = boroID == "0" ? true : false
 			for each (var boro:MovieClip in borosByID) {
 				var id:String = getSubBoroFromMovieClip(boro);
-				var isBoro:Boolean = (id.charAt(0) == boroID.charAt(0));
-
+				var isBoro:Boolean;
+				if(includeAll)
+					isBoro = true;
+				else
+				 	isBoro = (id.charAt(0) == boroID.charAt(0));
+				
 				clickedByArea[id] = isBoro;
 				boro.filters = isBoro ? selectedFilters : unselectedFilters;
 				TweenLite.to(boro, .4, {delay: ++inc * .01, alpha: isBoro ? .6 : .3});

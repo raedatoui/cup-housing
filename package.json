@@ -1,0 +1,34 @@
+{
+  "name": "cup-housing",
+  "version": "1.0.0",
+  "description": "CUP Housing Map deploy utility",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "N/A"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raedatoui/cup-housing.git"
+  },
+  "keywords": [
+    "cup",
+    "housing",
+    "map"
+  ],
+  "author": "Raed Atoui (raed.atoui@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raedatoui/cup-housing/issues"
+  },
+  "homepage": "https://github.com/raedatoui/cup-housing",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-ftp-deploy": "^0.1.10",
+    "jsftp": "^1.5.0",
+    "lodash": "^3.2.0",
+    "prompt": "^0.2.14"
+  }
+}

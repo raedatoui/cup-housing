@@ -86,9 +86,11 @@ package {
 
 		// boro data
 		protected static const boroCenterManhattan:Location = new Location(40.749884, -73.926977);
-		protected var boroIDs:Object = {'MANHATTAN' : 300, 'BROOKLYN' : 200, 'BRONX' : 100, 'STATEN ISLAND' : 500, 'QUEENS' : 400};
+		protected var boroIDs:Object = {'NEW YORK CITY': 0, 'MANHATTAN' : 300, 'BROOKLYN' : 200, 'BRONX' : 100, 'STATEN ISLAND' : 500, 'QUEENS' : 400};
 		protected var boroNames:Array = ['', 'BRONX', 'BROOKLYN', 'MANHATTAN', 'QUEENS', 'STATEN ISLAND'];
-		protected var boroCenters:Array = [null, new Location(40.826883, -73.922751), 					// bronx
+		protected var boroCenters:Array = [
+			new Location(40.7127, -74.0059),							// NYC
+			new Location(40.826883, -73.922751), 						// bronx
 			new Location(40.675234, -73.971043),  						// brooklyn
 			new Location(40.749884, -73.926977), 						// manhattan
 			new Location(40.72956780913896, -73.86451721191406), 		// queens
@@ -503,11 +505,19 @@ package {
 			}
 			else if (incomeByBorough[selector.selected])
 			{
-				selected = incomeByBorough[selector.selected];
-				subBoroShapes.selectByID(currentArea.id);
-
-				if (boroIDs[currentArea.borough.toUpperCase()])	// to account for new york, which doesnt exist
+				selected = incomeByBorough[selector.selected];	
+				if (boroIDs[currentArea.borough.toUpperCase()] != null) {
 					focusByBoro(boroIDs[currentArea.borough.toUpperCase()].toString());
+					if(currentArea.borough.toUpperCase() == "NEW YORK CITY") {
+						map.panTo(boroCenters[0]);
+						if(map.getZoom() > 11) {
+							map.zoomOut();
+						}							
+					}
+				}
+					
+				else
+					subBoroShapes.selectByID(currentArea.id);
 			}
 		}
 

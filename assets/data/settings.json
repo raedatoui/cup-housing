@@ -11,6 +11,14 @@
     },
 
     "boro_data": {
+        "new york city":{
+            "id": 0,
+            "coords": {
+                "x": 40.7127,
+                "y": -74.0059
+            },
+            "name": "NEW YORK CITY"
+        },
         "bronx":{
             "id": 100,
             "coords": {

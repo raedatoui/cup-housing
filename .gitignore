@@ -10,3 +10,5 @@ bin-release/
 # information for Eclipse / Flash Builder.
 .idea/*
 *.iml
+node_modules
+ftp_auth
