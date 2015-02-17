@@ -2,7 +2,7 @@
 ###1. Install Dev Tools
 If you are installing grunt and npm for the first time, I recommend using homebrew
 
-Homebrew requires installing Xcode and the Command line Tools. You need an Apple ID to downlaod Xcode from the App Store.
+Homebrew requires installing Xcode and the Command line Tools. You need an Apple ID to download Xcode from the App Store.
 
 * Download Xcode from the App Store
 * Download Command Line Tools from Dev Center: https://developer.apple.com/downloads/index.action 
@@ -54,6 +54,7 @@ Once edits have been made to the data files, they __must__ get committed and pus
 
 ### Using grunt command
 * run `grunt data` and the data files will uploaded to the server
+
 ### Using watcher
 * run `grunt watch` starts to watch changes to the __assets/data__ directory
 * any changes will automatically start the upload of the data files to the server
