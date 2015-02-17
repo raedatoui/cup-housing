@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
 
   var buildPath = './bin-release/build';
-  var uploadPath = './html/flash/grunt/';
+  var uploadPath = './html/flash/2013/';
 
   grunt.initConfig({
     'ftp-deploy': {
