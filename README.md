@@ -1,4 +1,4 @@
-## Install pre-requisites
+## Install prerequisites
 ###1. Install Dev Tools
 If you are installing grunt and npm for the first time, I recommend using homebrew
 
@@ -20,7 +20,7 @@ __http://shapeshed.com/setting-up-nodejs-and-npm-on-mac-osx/__
 These are the set of steps for creating a new build using Flash Builder and uploading it to the server using a grunt command. 
 
 ### Install CUP Grunt project
-You need to do this only once after installing the pre-requisites
+You need to do this only once after installing the prerequisites
 
 * navigate to the project directory, ie, the root of the git repository (__cup-housing__)
 * run the command `npm install`
