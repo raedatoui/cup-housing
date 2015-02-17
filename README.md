@@ -63,7 +63,7 @@ Once edits have been made to a satisfactory level, the best practice would consi
 * open and edit any of the files in __assets/data__
 * any changes to made on any file will automatically start the upload of the data files to the server
 * this process is triggered as soon as a file is saved
-* reload the site and check that data is updated
+* reload the site and check that data is updated - make sure you clear your browser cache - use chrome in incognito mode to avoid to constantly having to clear your browser cache
 * rinse and repeat
 
  
