@@ -1,19 +1,27 @@
-## Uploading Flash Builds
-This set of tools is intended to be used with Flash Builder.
-
-### Install pre-requisites
-####1. Install Dev Tools
+## Install pre-requisites
+###1. Install Dev Tools
 If you are installing grunt and npm for the first time, I recommend using homebrew
-
-__http://shapeshed.com/setting-up-nodejs-and-npm-on-mac-osx/__
 
 Homebrew requires installing Xcode and the Command line Tools. You need an Apple ID to downlaod Xcode from the App Store.
 
-* install homebrew
+* Download Xcode from the App Store
+* Download Command Line Tools from Dev Center: https://developer.apple.com/downloads/index.action 
+
+###2. Install Homebrew
+__http://shapeshed.com/setting-up-nodejs-and-npm-on-mac-osx/__
+
+###3. Install nodejs, npm and grunt
 * install npm : `brew install nodejs`
 * install grunt: `npm install grunt-cli -g`
 
-####2. Install CUP Grunt project
+---
+ 
+## Uploading Flash Builds
+These are the set of steps for creating a new build using Flash Builder and uploading it to the server using a grunt command. 
+
+### Install CUP Grunt project
+You need to do this only once after installing the pre-requisites
+
 * navigate to the project directory, ie, the root of the git repository (__cup-housing__)
 * run the command `npm install`
 * a new directory will be created __node_modules__
@@ -22,7 +30,7 @@ Homebrew requires installing Xcode and the Command line Tools. You need an Apple
 ### Build and Upload
 
 ####1. Clean
-* run `grunt clean` from the project root
+* run `grunt clean` from the project directory
 * the __bin-release__ will emptied
 
 ####2. Export Release Build
@@ -35,8 +43,21 @@ Homebrew requires installing Xcode and the Command line Tools. You need an Apple
 * copy __ftp_auth.sample__ and create a new file named __ftp_auth__
 * open and edit __ftp_auth__ and set your FTP username and password
 * open __Gruntfile.js__ and find the line: ` var uploadPath = './html/flash/2013/';`. This defines the path where the build will be uploaded
-* run `grunt upload` and the build gets uploaded to the server
+* run `grunt build` and the build directory gets uploaded to the server
 
-
+--
 
 ## Uploading JSON File
+The following grunt command and steps allow uploading only the data files (__settings.json__ and __2013-incomes.csv__) to the server. This is useful for updating the data on the server without having to create an entirely new build.
+
+Once edits have been made to the data files, they __must__ get committed and pushed to git.
+
+### Using grunt command
+* run `grunt data` and the data files will uploaded to the server
+### Using watcher
+* run `grunt watch` starts to watch changes to the __assets/data__ directory
+* any changes will automatically start the upload of the data files to the server
+
+ 
+ 
+
