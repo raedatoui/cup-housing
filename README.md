@@ -55,9 +55,16 @@ Once edits have been made to the data files, they __must__ get committed and pus
 ### Using grunt command
 * run `grunt data` and the data files will uploaded to the server
 
-### Using watcher
+### Using grunt watcher
+#### Start the watcher
 * run `grunt watch` starts to watch changes to the __assets/data__ directory
-* any changes will automatically start the upload of the data files to the server
+
+#### Iterative edits and uploads
+* open and edit any of the files in __assets/data__
+* any changes to made on any file will automatically start the upload of the data files to the server
+* this process is triggered as soon as file as saved
+* reload the site and check that data is updated
+* rinse and repeat from step 2
 
  
  
