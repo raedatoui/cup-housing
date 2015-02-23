@@ -76,8 +76,8 @@
         "mfiIncomes": [0,25750,42950,68700,103080,200000],
         "mfiIncomes2": [0,25750,42950,68700,85900,103080,200000],
         "mfiDescription": "The bar below shows the income categories that the government uses to decide who is eligible for different affordable housing programs. These categories are expressed as percentages of the Median Family Income.\n\nThe MFI for a family of four in Greater New York (which includes the City and some of its suburbs) is $85,900 per year.",
-        "mfiPercents": [0, 0.3, 0.5, 1, 1.2, 2.32],
-        "mfiPercents2": [0, 0.3, 0.5, 1, 1, 1.2, 2.32],
+        "mfiPercents": [0, 0.3, 0.5, 0.8, 1.2, 2.32],
+        "mfiPercents2": [0, 0.3, 0.5, 0.8, 1, 1.2, 2.32],
 
         "mfiLabel0": "<b>Extremely Low Income</b>\n25K or less",
         "mfiLabel1": "<b>Very Low Income</b>\n25K-43K",
@@ -88,8 +88,8 @@
 
         "mfiTip0": "<b>Extremely Low Income</b> runs from 0% to 30% of MFI,\nor from $0 to $25,750 in income for a family of four.",
         "mfiTip1": "<b>Very Low Income</b> runs from 30% to 50% of MFI,\nor from $$25,750 to $42,950 in income for a family of four.",
-        "mfiTip2": "<b>Low Income</b> runs from 50% to 100% of MFI,\nor from $42,950 to $68,7000 in income for a family of four.",
-        "mfiTip3": "<b>Moderate Income</b> runs from 100% to 120% of MFI,\nor from $68,700 to $103,080 in income for a family of four.",
+        "mfiTip2": "<b>Low Income</b> runs from 50% to 80% of MFI,\nor from $42,950 to $68,7000 in income for a family of four.",
+        "mfiTip3": "<b>Moderate Income</b> runs from 80% to 120% of MFI,\nor from $68,700 to $103,080 in income for a family of four.",
         "mfiTip4": "<b>Middle Income</b> runs from 120% to 230% of MFI,\nor from $103,080 to $200,000 in income for a family of four.",
         "mfiTip5": "<b>High Income</b> is above 230% of MFI,\nor above $200,000 in income for a family of four.",
 
