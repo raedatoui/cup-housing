@@ -11,20 +11,21 @@ import flash.utils.setTimeout;
 import gs.TweenLite;
 
 public class Shield extends BlockSprite implements TooltipBlocker {
-    public function Shield(color:IColor = null) {
+
+	public function Shield(color:IColor = null) {
         super(0, 0, color);
-
         useHandCursor = buttonMode = true;
-
-        addEventListener(Event.ADDED_TO_STAGE, onStage);
+		addEventListener(Event.ADDED_TO_STAGE, onStage);
     }
 
     public function remove(event:Event = null):void {
         TweenLite.to(this, .2, {alpha: 0, onComplete: reallyRemove});
+		stage.removeEventListener(Event.RESIZE, onResize);
+		stage.removeEventListener(MouseEvent.CLICK, remove);
     }
 
     protected function reallyRemove():void {
-        if (this.parent && this.parent.contains(this)) this.parent.removeChild(this);
+		this.dispatchEvent(new Event('shieldRemoved'));
     }
 
     protected function onStage(event:Event):void {
@@ -35,7 +36,7 @@ public class Shield extends BlockSprite implements TooltipBlocker {
 
     protected function addListeners():void {
         stage.addEventListener(Event.RESIZE, onResize);
-        stage.addEventListener(MouseEvent.CLICK, remove);
+		stage.addEventListener(MouseEvent.CLICK, remove);
     }
 
     protected function onResize(event:Event):void {

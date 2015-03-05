@@ -5,6 +5,7 @@ package {
 	import com.cup.display.SubBoroMap;
 	import com.cup.display.WebLayout;
 	import com.cup.events.AreaEvent;
+	import com.cup.model.ColorsCUP;
 	import com.cup.model.SubBoroIncomes;
 	import com.cup.output.MainPrinter;
 	import com.cup.output.PDFCompositor;
@@ -48,8 +49,6 @@ package {
 	
 	import gs.TweenFilterLite;
 	import gs.TweenLite;
-	
-	import com.cup.model.ColorsCUP;
 	
 	[SWF(backgroundColor="#FFFFFF")]
 	public class nyc_cup_housing extends ApplicationBase
@@ -134,6 +133,7 @@ package {
 
 		protected var currentArea:SubBoroIncomes;
 
+		protected var shieldSeen:Boolean = false;
 		
 		public function nyc_cup_housing()
 		{
@@ -304,6 +304,7 @@ package {
 		{
 			shield = new TextShield('adsadsa', defaultIntroText.toUpperCase(), shieldWidth, stage.stageHeight, RGBA.black(.8), RGBA.black(.2));
 			addChild(shield);
+			shield.addEventListener('shieldRemoved', onShieldRemoved);
 		}
 
 		protected function onLoad(event:Event):void
@@ -467,6 +468,7 @@ package {
 				shieldWidth, stage.stageHeight, RGBA.black(.8), RGBA.black(.2));
 
 			addChild(shield);
+			shield.addEventListener('shieldRemoved', onShieldRemoved);
 
 		}
 
@@ -541,15 +543,19 @@ package {
 
 		protected function addInfoShield(event:Event=null):void
 		{
-			if (shield)	{ shield.remove(); shield = null; }
 
 			shield = new TextShield('', defaultQuestionMarkText,
 				shieldWidth, stage.stageHeight, RGBA.black(.8), RGBA.black(.2));
 
 			addChild(shield);
+			shield.addEventListener('shieldRemoved', onShieldRemoved);
 		}
-
-		protected var shieldSeen:Boolean = false;
+		
+		private function onShieldRemoved(event:Event):void {
+			shield.removeEventListener('shieldRemoved',this.onShieldRemoved);
+			this.removeChild(shield);
+			shield = null;
+		}
 		protected function addRentShield(event:Event=null):void
 		{
 			if (shield)	{ shield.remove(); shield = null; }
@@ -558,7 +564,7 @@ package {
 			{
 				shield = new TextShield('', defaultRentIntroText, shieldWidth, stage.stageHeight, RGBA.black(.8), RGBA.black(.2));
 				addChild(shield);
-
+				shield.addEventListener('shieldRemoved', onShieldRemoved);
 				shieldSeen = true;
 			}
 		}

@@ -21,7 +21,6 @@ package com.cup.model {
 			text.embedFonts = true;
 			text.defaultTextFormat = newFormat;
 			// text.autoSize = TextFieldAutoSize.LEFT;
-			
 			text.selectable = text.mouseEnabled = false;
 			
 			return text;
