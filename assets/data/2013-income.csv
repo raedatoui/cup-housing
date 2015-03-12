@@ -1,5 +1,5 @@
 MapID,Area Name,,"""Families w/ Income < $25,750""","""Families w/ Income btw. $25,750 - $42,950""","""Families w/ Income btw. $42,950 - $68,700""","""Families w/ Income btw. $68,700 - $103,080""","""Families w/ Income btw. $103,080 - $200,000""","""Families w/ Income > $200,000""",Total Families,Mediam Family Income (2013)
-000,New York City,,430234,286727,486257,136013,354633,150675,1844540,57760
+000,New York City,,430234,286727,325449,296822,354633,150675,1844540,57760
 100,Bronx,,110437,58073,57908,44605,35604,6232,312858,38843
 101,,Mott Haven / Hunts Point,16239,7213,5101,2606,1443,135,33673,25974
 102,,Morrisania / Belmont,17623,7203,5529,3329,1419,123,23381,25617
