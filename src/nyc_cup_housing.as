@@ -290,14 +290,15 @@ package {
 			loader.load(new URLRequest(defaultBaseURL + this.defaultShapeURL), new LoaderContext(true)); //this used to load map.swf
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoad);
 
-			addIntroShield();
-
 			tooltip = new CUPTooltip();
 			addChild(tooltip);
-
+			
 			selector = new TextDropdown(this.defaultSelectorText, '', 215);
 			selector.addEventListener(Event.CHANGE, onSelectorChange);
 			addChild(selector);
+			
+			addIntroShield();
+
 		}
 
 		protected function addIntroShield(event:Event=null):void
