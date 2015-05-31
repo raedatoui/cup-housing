@@ -16,6 +16,7 @@ package com.shashi.info {
 	    public var padding:Padding = new Padding(40);
 	
 	    protected var text:TextField;
+		protected var close:TextField;
 	    protected var bg:BlockSprite;
 	    protected var TITLE:String = 'title';
 	    protected var DESC:String = 'desc';
@@ -36,7 +37,16 @@ package com.shashi.info {
 			text.mouseEnabled = true;
 			
 	        addChild(text);
+			
+			close = ConduitTextMaker.createConduitTextField(34, true, 0xFFFFFF, 5, true, true); 
+			close.multiline = true;
+			close.wordWrap = true;
+			close.htmlText = '<a href="#">close</a>';
+			close.addEventListener(MouseEvent.CLICK, remove);
+			close.mouseEnabled = true;	
 				
+			addChild(close);
+			
 			alpha = 0;
 	    }
 
@@ -75,12 +85,20 @@ package com.shashi.info {
 	
 	            var i:int = 34;
 	            text.setTextFormat(new TextFormat(ConduitTextMaker.boldConduit.fontName, i, 0xFFFFFF, true));
-	            while (text.textHeight > bg.height * .95 && i > 5) {
+	            while (text.textHeight > bg.height * .9 && i > 5) {
 	                text.setTextFormat(new TextFormat(ConduitTextMaker.boldConduit.fontName, --i, 0xFFFFFF, true));
 	            }
-
+				trace(i)
+				
+				if (close) {
+					close.x = bg.x + textPadding;
+					close.y = text.textHeight * 1.05;
+					close.height = bg.height / close.scaleY;
+					close.width = (bg.width - textPadding * 2);
+					close.setTextFormat(new TextFormat(ConduitTextMaker.boldConduit.fontName, i-3, 0xFFFFFF, true));
+				}
 	        }
-	
+
 	    }
 	
 	}

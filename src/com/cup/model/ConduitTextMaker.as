@@ -15,13 +15,15 @@ package com.cup.model {
 			super();
 		}
 		
-		public static function createConduitTextField(size:int, bold:Boolean = true, color:uint = 0xFFFFFF, leading:int = 0):TextField {
+		public static function createConduitTextField(size:int, bold:Boolean = true, color:uint = 0xFFFFFF, leading:int = 0, underline:Boolean = false, selectable:Boolean = false):TextField {
 			var text:TextField = new TextField();
 			var newFormat:TextFormat = new TextFormat(bold ? boldConduit.fontName : mediumConduit.fontName, size, color, bold, null, null, null, null, TextFieldAutoSize.LEFT, null, null, null, leading);
+			newFormat.underline = underline;
 			text.embedFonts = true;
 			text.defaultTextFormat = newFormat;
+			
 			// text.autoSize = TextFieldAutoSize.LEFT;
-			text.selectable = text.mouseEnabled = false;
+			text.selectable = text.mouseEnabled = selectable;
 			
 			return text;
 		}
