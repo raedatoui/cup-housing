@@ -1,6 +1,6 @@
 {
     "settings":{
-        "baseURL": "http://localhost/",
+        "baseURL": "http://envisioningdevelopment.net/flash/2013/",
         "mapURL": "maps/nyc_mercator_subboro.swf",
         "shapeURL": "maps/nyc.swf",
         "dataURL": "data/2013-income.csv",
